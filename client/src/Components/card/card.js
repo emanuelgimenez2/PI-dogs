@@ -1,15 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 import "./card.scss";
 
 export default function Card({ image, name, temperament, weight, height, id }) {
+  var history= useNavigate();
+
+
   return (
     <>
-      <div className="card-container">
+      <div  onClick={()=>{history(`/home/${id}`)}} className="card-container">
+
+
         <div className="card-title">
-          {/* <Link to={`/home/${id}`}> */}
-          {/* </Link> */}
+
+         
           <h2 className="nameHome">{name}</h2>
         </div>
         <div className="image-container">

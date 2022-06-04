@@ -1,15 +1,17 @@
-import React, { Link } from "react";
+import React, { Fragment, Link } from "react";
+import "./detail.scss"
+import { useNavigate } from "react-router-dom";
 
 export default function Detail() {
+  var history = useNavigate();
   return (
-    <div className="walpaperDetalle">
-      <div className="card-contenedor">
-        <div className="card-content">
-          <Link to="/home">
-            <img src={""} alt="" className="imgBackDetail" />
-            
-          </Link>
-          <h1 className="name">perro</h1>
+    <Fragment>
+
+    <div className="container-detail">
+      <div className="card-detail">
+        <div className="content-detail">
+          
+          <h1 className="name-detail">perro</h1>
           <div className="wightHeight">
             <h3 className="wightHeightLifeSpan">Peso: </h3>
             <h3 className="wightHeightLifeSpan">Tamaño: </h3>
@@ -24,10 +26,9 @@ export default function Detail() {
       </div>
 
       <div>
-        <Link to="/home">
-          <button className="volver">Volver a Pantalla anterior </button>
-        </Link>
+        <button onClick={()=>{history("/home")}}>Volver</button>
       </div>
     </div>
+    </Fragment>
   );
 }
