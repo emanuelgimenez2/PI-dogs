@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions/index.js";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const state = useSelector((state) => state.rootReducer);
-  React.useEffect(() => {
-    dispatch(getDogs());
-    console.log(state,"===========================");
-  }, []);
+  // const dispatch = useDispatch();
+  // const state = useSelector((state) => state.rootReducer);
+  // React.useEffect(() => {
+  //   dispatch(getDogs());
+  //   console.log(state,"===========================");
+  // }, []);
 
   return (
     <div className="container-home">
