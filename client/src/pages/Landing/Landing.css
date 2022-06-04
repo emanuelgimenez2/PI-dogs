@@ -1,0 +1,23 @@
+.Container-Landing{
+    
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/399/923/701/abstracto-galleta-humor-perro-wallpaper-preview.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  
+}
+.divHome{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
