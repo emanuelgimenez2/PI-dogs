@@ -1,12 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions";
-// import { useSelector } from "react-redux";
 import Card from "../card/card";
 import "./cards.scss";
 
 export default function Cards({ name, temperament, weight, height, id }) {
-  const temp = [1, 2, 3, 4, 5, 6, 7, 8];
   const dispatch = useDispatch();
   const state = useSelector((state) => state.dogs);
   React.useEffect(() => {

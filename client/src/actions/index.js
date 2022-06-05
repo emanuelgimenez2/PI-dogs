@@ -14,8 +14,7 @@ export function getDogs() {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
 
     var json = await axios.get("http://localhost:3001/dogs");
-
-    console.log('===========>',json.data);
+    
 
     return dispatch({
       type: GET_DOGS,
