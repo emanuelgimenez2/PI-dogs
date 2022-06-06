@@ -1,25 +1,25 @@
 import React, { Link } from "react";
+import { useNavigate } from "react-router-dom";
+import "./create.css";
 
 // import "./dogCreation.css";
 
 export default function Create() {
+  var history = useNavigate();
+
   return (
-    <div className="create-form">
-      <div className="titleRefreshHome">
-        <button type="submit" className="buttonRefresh">
-          <img className="iconRefresh" src={""} alt=""></img>
-        </button>
-
-        <div className="homeButton">
-          <Link to="/home" className="linkHome">
-            <img src={""} alt=""  className="iconHome" />
-            Home
-          </Link>
+    <div className="container-form">
+      <div className="create-form">
+        <div>
+          <h2>Formulario de creacion </h2>
         </div>
-
-        <h1 className="tituleCrear">Crea tu raza</h1>
-      </div>
-
+        <div className="buttonhome-form">
+          <button onClick={() => history("/home")} className="button-form">
+            Home
+          </button>
+        </div>
+        <h3 className="tituleCrear">Crea tu raza</h3>
+     
       <div className="card-containers">
         <div className="containers">
           <div className="breed">
@@ -116,14 +116,8 @@ export default function Create() {
         </div>
 
         <div className="temperamentsItems">
-          <button className="buttonRemove">
-            <img
-              src={""}
-              height="15px"
-              weight="15px"
-              alt="delete"
-              className="imgRemoveTemperament"
-            />
+          <button className="buttonRemove">Delete
+            
           </button>
         </div>
         <div>
@@ -132,6 +126,7 @@ export default function Create() {
           </button>
         </div>
       </div>
+    </div>
     </div>
   );
 }
