@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Landing.css";
 
 const Landing = () => {
@@ -9,8 +9,8 @@ const Landing = () => {
     <div className="Container-Landing">
       <div className="title-landing">
         <h1>
-          Hola, esta es una App donde encontraras Perros, te invito a ingresar  y buscar el
-          tuyo!
+          Hola, esta es una App donde encontraras Perros, te invito a ingresar y
+          buscar el tuyo!
         </h1>
       </div>
       <div className="divHome">

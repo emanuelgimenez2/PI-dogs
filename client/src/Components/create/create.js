@@ -27,8 +27,8 @@ export default function Create() {
             <input
               className="inputs"
               type="text"
-              name="name"
-              placeholder="name"
+              // name="name"
+              // placeholder="name"
             />
           </div>
 

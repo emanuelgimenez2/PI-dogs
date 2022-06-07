@@ -4,6 +4,7 @@ import { getDogs } from "../../actions";
 import Card from "../card/card";
 import "./cards.scss";
 
+
 export default function Cards({ name, temperament, weight, height, id }) {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.dogs);
@@ -15,6 +16,7 @@ export default function Cards({ name, temperament, weight, height, id }) {
   if (state) {
     return (
       <div className="cards-container">
+        
         {state.map((dog, index) => (
           <Card
             key={index}
@@ -26,6 +28,7 @@ export default function Cards({ name, temperament, weight, height, id }) {
             height={dog.height}
           />
         ))}
+       
       </div>
     );
   }
