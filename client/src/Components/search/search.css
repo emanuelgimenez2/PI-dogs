@@ -1,0 +1,30 @@
+.container-search{
+    display: contents;
+    width: 5ex;
+    height: 5ex;
+}
+
+.input-search{
+    background-color: rgba(0, 0, 0, 0.322);
+    color: rgba(255, 255, 255, 0.863);
+    border: 5ex;
+    border-radius: 5em;
+    margin-top: 1ex;
+    margin-bottom: 1ex;
+    font-size: 3ex;
+    padding: 1ex;
+    height: 2ex;
+    width: 15ex;
+}
+
+.button-search{
+    cursor: pointer;
+    border: none;
+    width: 4.75ex;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.button-search:hover{
+    transform: scale(1.2);
+}
+

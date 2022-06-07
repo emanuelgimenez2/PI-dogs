@@ -16,7 +16,7 @@ export default function Search() {
   function handleSubmit(e) {
     e.preventDefault();
     if (name.length === 0) {
-      return alert("Ingresa un valor para buscar");
+      return alert("Ingresa un valor");
     } else {
       dispatch(getDogName(name));
       setName("");
