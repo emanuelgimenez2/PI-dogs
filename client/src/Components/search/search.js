@@ -4,7 +4,7 @@ import { getDogName } from "../../actions/index";
 
 import "./search.css";
 
-export default function Search() {
+export default function Search({data}) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
@@ -22,6 +22,17 @@ export default function Search() {
       setName("");
     }
   }
+ /*  function handleSubmit(e,data) {
+ e.preventDefault();
+  const name = e.target.value;
+  data.filter(dog => dog.name === name);
+
+
+  } */
+ 
+
+   
+  
 
   return (
     <div className="container-search">

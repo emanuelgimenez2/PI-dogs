@@ -3,6 +3,22 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    grid-gap: 40px; 
+    margin: 0 auto;
+    padding: 100px 0;
+
+    
+
     
 
 }
+// .cards-container{
+//     display: grid;
+//     grid-template-columns: repeat(auto-fit,  500px);
+//     grid-gap: 40px;   
+//     justify-content: center;
+//     align-items: center;
+//     // padding-top: -100px;
+//     // margin: 0 auto;
+
+// }

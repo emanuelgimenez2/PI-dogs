@@ -19,13 +19,13 @@ export default function Cards({ name, temperament, weight, height, id }) {
         
         {state.map((dog, index) => (
           <Card
-            key={index}
-            id={dog.id}
+            // key={index}
+            // id={dog.id}
             name={dog.name}
-            temperament={dog.temperament}
+            temperament={ dog.temperament}
             image={dog.image}
             weight={dog.weight}
-            height={dog.height}
+            // height={dog.height}
           />
         ))}
        
