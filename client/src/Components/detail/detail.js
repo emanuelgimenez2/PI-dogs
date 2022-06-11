@@ -2,19 +2,22 @@ import React, { Fragment, Link, useEffect } from "react";
 import "./detail.scss"
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { getDetail } from "../../actions/index";
+import { getDogDetail } from "../../actions/index";
 
 export default function Detail() {
   var history = useNavigate();
-  // const dispatch = useDispatch()
-  //   const { id } = useParams()
+  const dispatch = useDispatch()
+    const { id } = useParams()
+    
 
     
-  //   useEffect(() => {
-  //       dispatch(getDetail(id));
-  //   }, [dispatch, id])
+    useEffect(() => {
+        dispatch(getDogDetail(id));
+    }, [dispatch, id])
+    const dog = useSelector(state => state.detail.dog)
+    console.log(dog)
 
-  //   const selectedDog = useSelector((state) => state.detailsDog)
+
 
   
   return (

@@ -1,0 +1,16 @@
+.container-detail{   
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    border-radius: 40px;
+    padding: 3% 3%;
+    // opacity: 0.9;
+    // background-image: url(../../../../assets/images/background.jpg);
+    box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
+  
+}

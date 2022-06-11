@@ -1,11 +1,59 @@
-import React, { Link } from "react";
-import { useNavigate } from "react-router-dom";
+// import React, { Link } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+import { postDog, getDogTemperament } from "../../actions";
 import "./create.css";
 
 // import "./dogCreation.css";
 
 export default function Create() {
   var history = useNavigate();
+  const dispatch = useDispatch()
+    const temperament = useSelector((state) => state.temperaments)
+    const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+      dispatch(getDogTemperament())
+  }, [dispatch]);
+
+  const [input, setInput] = useState({
+    name: "",
+    minimHeight: "", 
+    maximHeight: "",
+    minimWeight: "",
+    maximWeight: "",
+    maxLifeSpan: "",
+    minLifeSpan: "",
+    image: "",
+    temperament: []
+})
+  function handleChange(e){
+    console.log(e.target.value)
+        setInput({
+            ...input,
+            [e.target.name] : e.target.value
+        })
+    }
+
+  const handleClick = () => {
+    history("/home");
+    useDispatch(postDog(input))
+            Navigate("/home");
+            alerta("Perro creado")
+            setInput({
+                name: "",
+                minimHeight: "", 
+                maximHeight: "",
+                minimWeight: "",
+                maximWeight: "",
+                maxLifeSpan: "",
+                minLifeSpan: "",
+                image: "",
+                temperament: []
+        })
+        }
+  
 
   return (
     <div className="container-form">
@@ -27,8 +75,9 @@ export default function Create() {
             <input
               className="inputs"
               type="text"
-              // name="name"
-              // placeholder="name"
+              value= {input.name = input.name.substring(0, 1).toUpperCase() + input.name.substring(1)} 
+              onChange={(e) => handleChange(e)}
+              placeholder="name"
             />
           </div>
 
@@ -115,14 +164,14 @@ export default function Create() {
           </div>
         </div>
 
-        <div className="temperamentsItems">
+        {/* <div className="temperamentsItems">
           <button className="buttonRemove">Delete
             
           </button>
-        </div>
+        </div> */}
         <div>
-          <button className="createDogButton" type="submit">
-            Create Dog
+          <button className="buttonsubmit-from"    type="submit">
+            Guardar
           </button>
         </div>
       </div>

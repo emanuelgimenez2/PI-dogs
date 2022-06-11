@@ -1,9 +1,10 @@
 import React from "react";
 import Nav from "../navbar/nav";
 import Cards from "../cards/cards";
+
 // import Pagination from "../pagination/pagination";
 
-// import Footer from "../footer/footer";
+
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
         <Cards />
       </div>
       <div>
-        {/* <Footer/> */}
+        {/* <Footer /> */}
       </div>
     </div>
   );
