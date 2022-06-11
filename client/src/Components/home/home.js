@@ -17,7 +17,7 @@ export default function Home() {
         <Cards />
       </div>
       <div>
-        {/* <Footer /> */}
+       
       </div>
     </div>
   );

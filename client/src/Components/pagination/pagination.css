@@ -1,0 +1,30 @@
+.container-pagination {
+    margin-top: 1ex;
+    height: 1ex;
+}
+
+.button-pagination {
+    background-color: #000000a2;
+    height: 5ex;
+    width: 5ex;
+    margin: 0.5ex; 
+    border-radius: 5ex;
+    border: transparent;
+    color: blue;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.button-pagination:hover {
+    transition-delay: 0s;
+    color: rgb(255, 255, 255);
+    transform: translateY(1ex);
+}
+
+.button-pagination:active
+{
+    transition-delay: 0s;
+    color: rgb(0, 255, 21);
+    box-shadow: 0 0 40px rgb(59, 221, 10);        
+    transform: translateY(1ex);  
+}

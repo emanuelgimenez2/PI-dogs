@@ -6,6 +6,9 @@ import "./card.scss";
 
 export default function Card({ image, name, temperament, weight, height, id }) {
   var history= useNavigate();
+  
+  
+
 
 
   return (

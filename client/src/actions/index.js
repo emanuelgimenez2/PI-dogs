@@ -13,7 +13,7 @@ export function getDogs() {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
 
-    var json = await axios.get("/dogs");
+    var json = await axios.get("http://localhost:3001/dogs");
     
 
     return dispatch({
@@ -26,7 +26,7 @@ export function getDogs() {
 export function getTemperaments() {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-    var json = await axios.get("/temperaments");
+    var json = await axios.get("http://localhost:3001/temperaments");
     return dispatch({
       type: GET_TEMPERAMENTS,
       payload: json.data,
@@ -37,7 +37,7 @@ export function getTemperaments() {
 export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-    var response = await axios.post("/dog", payload);
+    var response = await axios.post("http://localhost:3001/dog", payload);
     console.log(response);
     return response;
   };
@@ -88,18 +88,20 @@ export function orderByWeight(payload) {
 //   };
 // }
 export function getDogDetail(id) {
-  console.log(id)
+
+  // console.log('============>',id)
+  
 
   return async function (dispatch){
   try {
-      var json = await axios.get(`/dogs/${id}`)
+      var json = await axios.get(`http://localhost:3001/dogs/${id}`)
       console.log(json.data)
       return dispatch({
           type: GET_DOG_DETAIL,
           payload: json.data
       });
   } catch (error) {
-      alert("error al buscar perro por ID")
+      // alert("error al buscar perro por ID")
   }}
 }
 
@@ -110,7 +112,7 @@ export function getDogName(name) {
   // Le pego la ruta y le digo ejecutamela con lo que te estoy pasando como "name"
   return async function (dispatch) {
     try {
-      var json = await axios.get("/dogs?name=" + name);
+      var json = await axios.get("http://localhost:3001/dogs?name=" + name);
       return dispatch({
         type: "GET_DOG_BY_NAME",
         payload: json.data, // La respuesta de la promesa guardada en "json"

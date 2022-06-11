@@ -6,6 +6,8 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
+  min-height: 100vh;
+  
 }
 .create-form {
   display: flex;
