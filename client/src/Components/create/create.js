@@ -36,21 +36,12 @@ export default function Create() {
       [e.target.name]: e.target.value,
     });
   }
-  console.log("================>>>", input);
+  // console.log("================>>>", input);
 
   const handleClick = () => {
     dispatch(postDog(input));
-    setInput({
-      name: "",
-      minimHeight: "",
-      maximHeight: "",
-      minimWeight: "",
-      maximWeight: "",
-      maxLifeSpan: "",
-      minLifeSpan: "",
-      image: "",
-      temperament: [],
-    });
+    
+   
   };
 
   return (
@@ -178,8 +169,8 @@ export default function Create() {
           <div>
             <button
               className="buttonsubmit-from"
-              type="submit"
-              onClick={handleClick()}
+              
+              onClick={handleClick}
             >
               Guardar
             </button>

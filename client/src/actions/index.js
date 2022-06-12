@@ -30,12 +30,32 @@ export function getTemperaments() {
   };
 }
 
+// export function postDog(payload) {
+//   return async function (dispatch) {
+//     // Le pasamos la ruta del back para que me traiga todos los dogs.
+//     var response = await axios.post("http://localhost:3001/dog", payload);
+//     // console.log(response);
+//     return response;
+//   };
+// }
 export function postDog(payload) {
+  // console.log("===================>", payload);
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-    var response = await axios.post("http://localhost:3001/dog", payload);
-    // console.log(response);
-    return response;
+    axios
+      .post("http://localhost:3001/dog", payload)
+      .then(function (response) {
+      
+      //  return JSON.parse(response)
+      const data = JSON.parse(response.status)
+      data === 200 ? alert("Raza creada correctamente") : alert("Error")
+      
+     
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert("Error")
+      });
   };
 }
 
