@@ -31,27 +31,38 @@ const getApiInfo = async () => {
 
         const weightMM = []
         perro.weight.metric.split("-")?.forEach(element => {
-            weightMM.push(parseInt(element.trim()));
+            weightMM.push(element.trim());
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
         }
+        // const life_SpanAA = []
+        //   perro.life_span.split("-")?.map(element => {
+        //     // return parseInt(element.trim());
+        //     // life_SpanAA.push(parseInt(element.trim()));
+        // })
+        // if (!life_SpanAA[1]) {
+        //     life_SpanAA.push(life_SpanAA[0])
+        // }
+    
 
-        // const life_SpanAA = [] 
-
-        // perro.life_span.metric.split("-") ?.forEach(element => {     me denera un error
+        // perro.life_span.metric.split("-") ?.forEach(element => {    ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
         //     life_SpanAA.push(parseInt(element.trim()));
         // })
         // if (!life_SpanAA[1]) {
         //     life_SpanAA.push(life_SpanAA[0])
         // }
 
+       
+
+
+
         return{
             id: perro.id,
             name: perro.name,
             height: heightMM,
             weight: weightMM,
-            // lifeSpan: life_SpanAA,  me denera un error
+            // lifeSpan: life_SpanAA, ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
             image: perro.image.url,
             temperament: perro.temperament,
             origin: perro.origin
@@ -76,9 +87,9 @@ const getDBinfo = async () => {
     const dogInfo = await dogInDB.map(d => {
 
         const weightMM = []
-        d.weight.split("-")?.forEach(element => {
-            weightMM.push(parseInt(element.trim()));
-        })
+        // d.weight.split("-")?.forEach(element => {
+        //     weightMM.push(parseInt(element.trim()));ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+        // })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
         }
@@ -156,9 +167,9 @@ const getDetailsDBinfo = async () => {
 
     const dogInfo = await dogInDB.map(d => {
         const heightMM = []
-        d.height.split("-")?.forEach(element => {
-            heightMM.push(parseInt(element.trim()));
-        })
+        // d.height.split("-")?.forEach(element => {
+        //     heightMM.push(parseInt(element.trim()));ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+        // })
         if (!heightMM[1]) {
             heightMM.push(heightMM[0])
         }
