@@ -115,7 +115,7 @@ export function getDogDetail(id) {
         payload: json.data,
       });
     } catch (error) {
-      // alert("error al buscar perro por ID")
+      alert("error al buscar perro por ID")
     }
   };
 }

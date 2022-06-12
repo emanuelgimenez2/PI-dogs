@@ -36,14 +36,14 @@ const getApiInfo = async () => {
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
         }
-        // const life_SpanAA = []
-        //   perro.life_span.split("-")?.map(element => {
-        //     // return parseInt(element.trim());
-        //     // life_SpanAA.push(parseInt(element.trim()));
-        // })
-        // if (!life_SpanAA[1]) {
-        //     life_SpanAA.push(life_SpanAA[0])
-        // }
+        const life_SpanAA = []
+          perro.life_span.split("-")?.map(element => {
+            // return parseInt(element.trim());
+            life_SpanAA.push(parseInt(element.trim()));
+        })
+        if (!life_SpanAA[1]) {
+            life_SpanAA.push(life_SpanAA[0])
+        }
     
 
         // perro.life_span.metric.split("-") ?.forEach(element => {    ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
@@ -62,7 +62,7 @@ const getApiInfo = async () => {
             name: perro.name,
             height: heightMM,
             weight: weightMM,
-            // lifeSpan: life_SpanAA, ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+            lifeSpan: life_SpanAA, 
             image: perro.image.url,
             temperament: perro.temperament,
             origin: perro.origin
@@ -87,9 +87,9 @@ const getDBinfo = async () => {
     const dogInfo = await dogInDB.map(d => {
 
         const weightMM = []
-        // d.weight.split("-")?.forEach(element => {
-        //     weightMM.push(parseInt(element.trim()));ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        // })
+        d.weight.forEach(element => {
+            weightMM.push(element.trim());
+        })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
         }
@@ -167,9 +167,9 @@ const getDetailsDBinfo = async () => {
 
     const dogInfo = await dogInDB.map(d => {
         const heightMM = []
-        // d.height.split("-")?.forEach(element => {
-        //     heightMM.push(parseInt(element.trim()));ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        // })
+        d.height.split("-")?.forEach(element => {
+            heightMM.push(element.trim());
+        })
         if (!heightMM[1]) {
             heightMM.push(heightMM[0])
         }
