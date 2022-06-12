@@ -1,67 +1,76 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions";
 import Card from "../card/card";
-// import Pagination from "../pagination/pagination";
-import "./cards.scss";
 import "./paginationprueba.scss";
 
 export default function Cards() {
   const dispatch = useDispatch();
+  const initialData = useSelector((state) => state.dogs);
+  const numberofInitialCards = initialData.length;
+  const numberOfCards = 9;
+  const numberOfPages = Math.ceil(numberofInitialCards / numberOfCards);
+  const numberOfPagesPagination = [];
+  // console.log("===numberofCards", numberOfPages);
+  const [dataForPage, setDataForPage] = useState(false);
+  const [page, setPage] = useState(0);
+
+  for (let index = 0; index < numberOfPages; index++) {
+    numberOfPagesPagination.push(index + 1);
+  }
+
+  
+
   React.useEffect(() => {
     dispatch(getDogs());
   }, []);
-  const pageNumbers = [];
-  const dogsOnPage = 9;
-  const state = useSelector((state) => state.dogs);
-  const initialState = state &&  state.slice(state[0], state[9]);
-  const [dataForPage, setDataForPage] = React.useState(initialState);
-  const [page, setPage] = React.useState(false);
+
+  React.useEffect(() => {
+    setDataForPage(initialData.slice(0, 9));
+  }, [initialData]);
   
+  React.useEffect(() => {
+    const cutInitialData = initialData.slice(
+      page === 0 ? page : page * 9 - 9,
+      page === 0 ? 9 : page * 9
+    );
+    setDataForPage(cutInitialData);
+  }, [page]);
 
-  console.log("==page=>", page);
-
-  console.log('===dtaforpage==>',dataForPage)
-
-  const totalPages = Math.ceil(state.length / dogsOnPage);
-
-  for (let i = 0; i < totalPages; i++) {
-    pageNumbers.push(i + 1);
-  }
-
-  var statetenuevp = state && state.slice(pageNumbers[0], 9);
-
-  const handleChangePage = (value) => {
-    setDataForPage(value);
-  };
-
-
-
-  if (!statetenuevp) return <p>Loading</p>;
+  if (!dataForPage)
+    <div className="loading">
+      <p
+        className="
+    loading-p"
+      >
+        Loading
+      </p>
+    </div>;
 
   return (
     <div>
-      <div className="cards-container">
-        {statetenuevp?.map((dog, index) => (
-          <Card
-            key={index}
-            id={dog.id}
-            name={dog.name}
-            temperament={dog.temperament}
-            image={dog.image}
-            weight={dog.weight}
-            height={dog.height}
-          />
-        ))}
+      <div>
+        {dataForPage &&
+          dataForPage?.map((dog, index) => (
+            <Card
+              height={dog?.height}
+              weight={dog?.weight}
+              id={dog?.id}
+              image={dog?.image}
+              name={dog?.name}
+              temperament={dog?.temperament}
+              key={dog?.id}
+            />
+          ))}
       </div>
-      <div className="pagination">
-        {/* <Pagination handleChangePage={handleChangePage}  setDataForPage={ setDataForPage}/> */}
+      <div>
         <ul className="container-pagination">
-          {totalPages.map((n, index) => (
+          {numberOfPagesPagination.map((n, index) => (
             <button
               className="button-pagination"
-              key={n}
-              onClick={() => setPage(index)}
+              key={index}
+              onClick={() => setPage(n)}
             >
               {n}
             </button>

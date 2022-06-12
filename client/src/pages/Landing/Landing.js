@@ -1,9 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getDogs } from "../../actions";
 import "./Landing.css";
 
 const Landing = () => {
   var history = useNavigate();
+
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(getDogs());
+  }, []);
 
   return (
     <div className="Container-Landing">

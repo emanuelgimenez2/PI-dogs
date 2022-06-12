@@ -1,4 +1,4 @@
-import React, { Fragment, Link, useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./detail.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,15 +10,13 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  console.log("===================>", id);
-
   useEffect(() => {
     dispatch(getDogDetail(id));
   }, [id]);
   const dog = useSelector((state) => state.detail);
-  console.log("===================>", dog);
+  // console.log("===================>", dog);
 
-  if (dog.length == 0) {
+  if (dog.length === 0) {
     return (
       <div>
         <p>Loading</p>

@@ -1,20 +1,16 @@
 import axios from "axios";
 
 const GET_DOGS = "GET_DOGS";
- const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
- const FILTER_BY_TEMPERAMENTS = "FILTER_BY_TEMPERAMENTS";
+const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
+const FILTER_BY_TEMPERAMENTS = "FILTER_BY_TEMPERAMENTS";
 const GET_DOG_DETAIL = "GET_DOG_DETAIL";
 // const GET_DOGS_FAILURE = "GET_DOGS_FAILURE";
-
-
-
 
 export function getDogs() {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
 
     var json = await axios.get("http://localhost:3001/dogs");
-    
 
     return dispatch({
       type: GET_DOGS,
@@ -88,23 +84,21 @@ export function orderByWeight(payload) {
 //   };
 // }
 export function getDogDetail(id) {
-
   // console.log('============>',id)
-  
 
-  return async function (dispatch){
-  try {
-      var json = await axios.get(`http://localhost:3001/dogs/${id}`)
-      console.log(json.data)
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(`http://localhost:3001/dogs/${id}`);
+      console.log(json.data);
       return dispatch({
-          type: GET_DOG_DETAIL,
-          payload: json.data
+        type: GET_DOG_DETAIL,
+        payload: json.data,
       });
-  } catch (error) {
+    } catch (error) {
       // alert("error al buscar perro por ID")
-  }}
+    }
+  };
 }
-
 
 export function getDogName(name) {
   // Por payload me va a llegar lo que el usuario ponga en la barra de busqueda
@@ -118,7 +112,6 @@ export function getDogName(name) {
         payload: json.data, // La respuesta de la promesa guardada en "json"
       });
     } catch (error) {
-    
       alert("error: " + error);
     }
   };
