@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions";
 import Card from "../card/card";
-import "./paginationprueba.scss";
+
 
 export default function Cards() {
   const dispatch = useDispatch();

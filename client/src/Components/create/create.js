@@ -1,8 +1,9 @@
 // import React, { Link } from "react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import { postDog, getTemperaments } from "../../actions";
+import { useEffect } from "react";
+import {  useState } from "react";
+import { useDispatch, useSelector,  } from "react-redux";
+import {  useNavigate } from "react-router-dom";
+import { getTemperaments, postDog } from "../../actions";
 import "./create.css";
 
 // import "./dogCreation.css";
@@ -11,48 +12,46 @@ export default function Create() {
   var history = useNavigate();
   const dispatch = useDispatch();
   const temperament = useSelector((state) => state.temperaments);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
-  useEffect(() => {
+  useEffect (() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
   const [input, setInput] = useState({
-    name: "",
-    minimHeight: "",
-    maximHeight: "",
-    minimWeight: "",
-    maximWeight: "",
-    maxLifeSpan: "",
-    minLifeSpan: "",
-    image: "",
+    name: " ",
+    minimHeight: " ",
+    maximHeight: " ",
+    minimWeight: " ",
+    maximWeight: " ",
+    maxLifeSpan: " ",
+    minLifeSpan: " ",
+    image: " ",
     temperament: [],
   });
+
   function handleChange(e) {
-    // console.log(e.target.value);
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   }
+  console.log("================>>>", input);
 
-  // const handleClick = () => {
-  //   history("/home");
-  //   dispatch(postDog(input));
-  //   Navigate("/home");
-  //   // alerta("Perro creado")
-  //   setInput({
-  //     name: "",
-  //     minimHeight: "",
-  //     maximHeight: "",
-  //     minimWeight: "",
-  //     maximWeight: "",
-  //     maxLifeSpan: "",
-  //     minLifeSpan: "",
-  //     image: "",
-  //     temperament: [],
-  //   });
-  // };
+  const handleClick = () => {
+    dispatch(postDog(input));
+    setInput({
+      name: "",
+      minimHeight: "",
+      maximHeight: "",
+      minimWeight: "",
+      maximWeight: "",
+      maxLifeSpan: "",
+      minLifeSpan: "",
+      image: "",
+      temperament: [],
+    });
+  };
 
   return (
     <div className="container-form">
@@ -105,7 +104,7 @@ export default function Create() {
                 value={input.maximHeight}
                 onChange={(e) => handleChange(e)}
                 placeholder="Maximal height"
-                />
+              />
             </div>
 
             <div className="minWeight">
@@ -119,7 +118,7 @@ export default function Create() {
                 value={input.minimWeight}
                 onChange={(e) => handleChange(e)}
                 placeholder="Minimal weight"
-                />
+              />
             </div>
 
             <div className="maxWeight">
@@ -133,7 +132,7 @@ export default function Create() {
                 value={input.maximWeight}
                 onChange={(e) => handleChange(e)}
                 placeholder="Maximal weight"
-                />
+              />
             </div>
 
             <div className="minLifeSpan">
@@ -147,7 +146,7 @@ export default function Create() {
                 value={input.minLifeSpan}
                 onChange={(e) => handleChange(e)}
                 placeholder="Breed's life span"
-                />
+              />
             </div>
 
             <div className="maxLifeSpan">
@@ -161,9 +160,9 @@ export default function Create() {
                 value={input.maxLifeSpan}
                 onChange={(e) => handleChange(e)}
                 placeholder="Breed's life span"
-                />
+              />
             </div>
-
+            {/* 
             <div className="picture">
               <label>Imagen</label>
               <input
@@ -174,11 +173,14 @@ export default function Create() {
                 onChange={(e) => handleChange(e)}
                 placeholder="Picture URL..."
                 />
-            </div> 
-                
+            </div>  */}
           </div>
           <div>
-            <button className="buttonsubmit-from" type="submit" /* onClick={handleClick()} */>
+            <button
+              className="buttonsubmit-from"
+              type="submit"
+              onClick={handleClick()}
+            >
               Guardar
             </button>
           </div>

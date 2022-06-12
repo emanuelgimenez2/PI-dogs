@@ -34,7 +34,7 @@ export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
     var response = await axios.post("http://localhost:3001/dog", payload);
-    console.log(response);
+    // console.log(response);
     return response;
   };
 }
