@@ -5,31 +5,6 @@ const { getAllDogs, getDetailsDogs } = require("../controller/dog");
 const { getTemperament } = require("../controller/temperament");
 const router = Router();
 
-(
-    async () => {
-        const dogsDataFromApi = await getAllDogs();
-
-        // console.log('====dogsFromAPi===>',dogsDataFromApi)
-
-
-        dogsDataFromApi.forEach((dog) => {
-            Dog.findOrCreate({
-              where: { name: dog.name },
-              defaults: {
-              id: dog.id,
-              name: dog.name || 'no existe',
-              height: dog.height || [1,1],
-              weight: dog.weight || [ '7', '9' ],
-              image: dog.image || 'no existe',
-                //  temperament: dog.temperament,
-              //    origin: dog.origin,
-              //    life_span: dog.life_span,
-              createdAtDb: dog.createdAtDb || false,
-              }
-            });
-          });
-    }
-)()
 router.get("/dogs", async function (req, res) {
   const { name } = req.query;
   const dogTotal = await getAllDogs();
@@ -67,41 +42,32 @@ router.get("/temperament", async (req, res) => {
 });
 
 router.post("/dog", async (req, res) => {
-  let {
-    name,
-    minimHeight,
-    maximHeight,
-    minimWeight,
-    maximWeight,
-    minLifeSpan,
-    maxLifeSpan,
-    image,
-    createdAtDb,
-    temperament,
-  } = req.body;
+  let { name, height, weight, life_span, image, createdAtDb, temperament } =
+    req.body;
 
-  let height = minimHeight + " - " + maximHeight;
-  let weight = minimWeight + " - " + maximWeight;
-  let life_span = minLifeSpan + " - " + maxLifeSpan;
+  await Temperament.findOrCreate({
+    where: {
+      name: temperament,
+    },
+    defaults: {
+      name: temperament,
+    },
+  });
+
+  let temperamentDb = await Temperament.findAll({
+    where: { name: temperament },
+  });
 
   let dog = await Dog.create({
     name,
     height,
     weight,
     life_span,
-    image: image
-      ? image
-      : "https://ichef.bbci.co.uk/news/800/cpsprodpb/15665/production/_107435678_perro1.jpg.webp", //cambiar imagen por defecto
+    image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
     createdAtDb,
   });
 
-  let temperamentDb = await Temperament.findAll({
-    where: {
-      name: temperament,
-    },
-  });
-
-  dog.addTemperament(temperamentDb);
+  dog.setTemperaments(temperamentDb);
 
   res.status(200).send("Perrito creado! :D");
 });

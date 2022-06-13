@@ -2,9 +2,10 @@ const { API_KEY } = process.env;
 const axios = require("axios");
 const { Temperament } = require("../db");
 
+
+
 const getTemperament = async () => {
-    let api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-    
+    let api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`);
     let allTemperament = await api.data.map((temp) => {return temp.temperament}).join().split(",");
 
     let temps = [];
@@ -19,8 +20,10 @@ const getTemperament = async () => {
         await Temperament.findOrCreate({
             where: {
                 name: d
-                
             },
+            defaults: {
+                name: d
+            }
         });
     });
 };

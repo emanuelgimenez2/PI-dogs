@@ -14,7 +14,7 @@ export default function Detail() {
     dispatch(getDogDetail(id));
   }, [id]);
   const dog = useSelector((state) => state.detail);
-  // console.log("===================>", dog);
+  console.log("===================>", dog);
 
   if (dog.length === 0) {
     return (

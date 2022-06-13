@@ -104,11 +104,11 @@ export function orderByWeight(payload) {
 //   };
 // }
 export function getDogDetail(id) {
-  // console.log('============>',id)
-
+  console.log('============>este es el id en el state',id)
   return async function (dispatch) {
     try {
       var json = await axios.get(`http://localhost:3001/dogs/${id}`);
+      console.log('============>este es el id dentro del try',id)
       console.log(json.data);
       return dispatch({
         type: GET_DOG_DETAIL,

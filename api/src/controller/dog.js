@@ -1,77 +1,31 @@
-const { API_KEY } = process.env;
+//const { API_KEY } = process.env
 const axios = require('axios')
 const { Dog, Temperament } = require('../db');
 
-
-
-
-const getAllDogs = async () => {
-    const apiInfo = await getApiInfo();
-    const dbInfo = await getDBinfo();
-    const allInfo = apiInfo.concat(dbInfo);
-
-    return allInfo
-}
-
 const getApiInfo = async () => {
-    
-    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
 
-    const dogInfo = await api.data.map(perro => {
-        
-
-
-        const heightMM = []
-        perro.height.metric.split("-")?.forEach(element => {
-            heightMM.push(parseInt(element.trim()));
-        })
-        if (!heightMM[1]) {
-            heightMM.push(heightMM[0])
-        }
+    const dogInfo = await api.data.map(d => {
 
         const weightMM = []
-        perro.weight.metric.split("-")?.forEach(element => {
-            weightMM.push(element.trim());
+        d.weight.metric.split("-")?.forEach(element => {
+            weightMM.push(parseInt(element.trim()));
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
         }
-        const life_SpanAA = []
-          perro.life_span.split("-")?.map(element => {
-            // return parseInt(element.trim());
-            life_SpanAA.push(parseInt(element.trim()));
-        })
-        if (!life_SpanAA[1]) {
-            life_SpanAA.push(life_SpanAA[0])
-        }
-    
-
-        // perro.life_span.metric.split("-") ?.forEach(element => {    ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-        //     life_SpanAA.push(parseInt(element.trim()));
-        // })
-        // if (!life_SpanAA[1]) {
-        //     life_SpanAA.push(life_SpanAA[0])
-        // }
-
-       
-
-
 
         return{
-            id: perro.id,
-            name: perro.name,
-            height: heightMM,
+            id: d.id,
+            name: d.name,
             weight: weightMM,
-            lifeSpan: life_SpanAA, 
-            image: perro.image.url,
-            temperament: perro.temperament,
-            origin: perro.origin
+            image: d.image.url,
+            temperament: d.temperament
         }
     })
 
     return dogInfo;
 }
-
 
 const getDBinfo = async () => {
     const dogInDB = await Dog.findAll({
@@ -87,8 +41,8 @@ const getDBinfo = async () => {
     const dogInfo = await dogInDB.map(d => {
 
         const weightMM = []
-        d.weight.forEach(element => {
-            weightMM.push(element.trim());
+        d.weight.split("-")?.forEach(element => {
+            weightMM.push(parseInt(element.trim()));
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])
@@ -108,10 +62,16 @@ return dogInfo;
 }
 
 
+const getAllDogs = async () => {
+    const apiInfo = await getApiInfo();
+    const dbInfo = await getDBinfo();
+    const allInfo = apiInfo.concat(dbInfo);
+
+    return allInfo
+}
 
 const getDetailsApiInfo = async () => {
-   
-    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+    const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`)
 
     const dogInfo = await api.data.map(d => {
 
@@ -168,7 +128,7 @@ const getDetailsDBinfo = async () => {
     const dogInfo = await dogInDB.map(d => {
         const heightMM = []
         d.height.split("-")?.forEach(element => {
-            heightMM.push(element.trim());
+            heightMM.push(parseInt(element.trim()));
         })
         if (!heightMM[1]) {
             heightMM.push(heightMM[0])
@@ -214,3 +174,4 @@ module.exports = {
     getAllDogs,
     getDetailsDogs
 }
+
