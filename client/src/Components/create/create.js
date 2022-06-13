@@ -1,20 +1,19 @@
 // import React, { Link } from "react";
 import { useEffect } from "react";
-import {  useState } from "react";
-import { useDispatch, useSelector,  } from "react-redux";
-import {  useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { getTemperaments, postDog } from "../../actions";
 import "./create.css";
 
-// import "./dogCreation.css";
 
 export default function Create() {
   var history = useNavigate();
   const dispatch = useDispatch();
-  const temperament = useSelector((state) => state.temperaments);
+  // const temperament = useSelector((state) => state.temperaments);
   // const [errors, setErrors] = useState({});
 
-  useEffect (() => {
+  useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
@@ -36,12 +35,9 @@ export default function Create() {
       [e.target.name]: e.target.value,
     });
   }
-  // console.log("================>>>", input);
 
   const handleClick = () => {
     dispatch(postDog(input));
-    
-   
   };
 
   return (
@@ -153,25 +149,22 @@ export default function Create() {
                 placeholder="Breed's life span"
               />
             </div>
-            {/* 
-            <div className="picture">
-              <label>Imagen</label>
+            <div className="maxLifeSpan">
+              <label>Temperamento</label>
               <input
                 className="inputs"
                 type="text"
-                name="image"
-                value={input.image}
+                min="1"
+                max="21"
+                name="maxLifeSpan"
+                value={input.maxLifeSpan}
                 onChange={(e) => handleChange(e)}
-                placeholder="Picture URL..."
-                />
-            </div>  */}
+                placeholder="Ingrese su temperamento"
+              />
+            </div>
           </div>
           <div>
-            <button
-              className="buttonsubmit-from"
-              
-              onClick={handleClick}
-            >
+            <button className="buttonsubmit-from" onClick={handleClick}>
               Guardar
             </button>
           </div>

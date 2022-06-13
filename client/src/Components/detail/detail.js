@@ -12,20 +12,21 @@ export default function Detail() {
 
   useEffect(() => {
     dispatch(getDogDetail(id));
-  }, [id]);
+  }, [dispatch,id]);
+
   const dog = useSelector((state) => state.detail);
-  console.log("===================>", dog);
+
 
   if (dog.length === 0) {
     return (
       <div>
-        <p>Loading</p>
+        <p>Loading....</p>
       </div>
     );
   }
 
   return (
-    <Fragment>
+    <>
       <div className="container-detail">
         <div className="card-detail">
           <div className="content-detail">
@@ -47,7 +48,7 @@ export default function Detail() {
             <h3 className="wightHeightLifeSpan">
               Esperanza de vida:{dog[0]?.lifeSpan[1] ?? "no existe"}{" "}
             </h3>
-            {/* <h3 className="wightHeightLifeSpan">Origen:</h3>  */}
+
             <h2 className="temperamentDetalle">
               Temperamentos: {dog[0]?.temperament[1] ?? "no existe"}
             </h2>
@@ -71,6 +72,6 @@ export default function Detail() {
           </div>
         </div>
       </div>
-    </Fragment>
+    </>
   );
 }

@@ -22,7 +22,7 @@ export function getDogs() {
 export function getTemperaments() {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-    var json = await axios.get("http://localhost:3001/temperaments");
+    var json = await axios.get("http://localhost:3001/temperament");
     return dispatch({
       type: GET_TEMPERAMENTS,
       payload: json.data,
@@ -30,23 +30,14 @@ export function getTemperaments() {
   };
 }
 
-// export function postDog(payload) {
-//   return async function (dispatch) {
-//     // Le pasamos la ruta del back para que me traiga todos los dogs.
-//     var response = await axios.post("http://localhost:3001/dog", payload);
-//     // console.log(response);
-//     return response;
-//   };
-// }
+
 export function postDog(payload) {
-  // console.log("===================>", payload);
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
     axios
       .post("http://localhost:3001/dog", payload)
       .then(function (response) {
-      
-      //  return JSON.parse(response)
+    
       const data = JSON.parse(response.status)
       data === 200 ? alert("Raza creada correctamente") : alert("Error")
       
@@ -90,26 +81,10 @@ export function orderByWeight(payload) {
   };
 }
 
-// export function getDogDetail(id) {
-//   return async function (dispatch) {
-//     try {
-//       var json = await axios.get(`http://localhost:3001/dogs/${id}`);
-//       return dispatch({
-//         type: GET_DOG_DETAIL,
-//         payload: json.data,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// }
 export function getDogDetail(id) {
-  console.log('============>este es el id en el state',id)
   return async function (dispatch) {
     try {
       var json = await axios.get(`http://localhost:3001/dogs/${id}`);
-      console.log('============>este es el id dentro del try',id)
-      console.log(json.data);
       return dispatch({
         type: GET_DOG_DETAIL,
         payload: json.data,
@@ -119,6 +94,7 @@ export function getDogDetail(id) {
     }
   };
 }
+
 
 export function getDogName(name) {
   // Por payload me va a llegar lo que el usuario ponga en la barra de busqueda

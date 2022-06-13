@@ -1,10 +1,9 @@
 import React from "react";
 import Nav from "../navbar/nav";
 import Cards from "../cards/cards";
+import Filter from "../filter/filter";
 
 // import Pagination from "../pagination/pagination";
-
-
 
 export default function Home() {
   return (
@@ -12,13 +11,13 @@ export default function Home() {
       <div className="navigation-home">
         <Nav />
       </div>
-      
+      <div className="filter-home">
+        <Filter/>
+      </div>
       <div className="body-home">
         <Cards />
       </div>
-      <div>
-       
-      </div>
+      <div></div>
     </div>
   );
 }

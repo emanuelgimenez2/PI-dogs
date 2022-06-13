@@ -8,11 +8,13 @@ import Card from "../card/card";
 export default function Cards() {
   const dispatch = useDispatch();
   const initialData = useSelector((state) => state.dogs);
-  const numberofInitialCards = initialData.length;
+  
+  const numberofInitialCards =  initialData.length;
+  
   const numberOfCards = 9;
   const numberOfPages = Math.ceil(numberofInitialCards / numberOfCards);
   const numberOfPagesPagination = [];
-  // console.log("===numberofCards", numberOfPages);
+ 
   const [dataForPage, setDataForPage] = useState(false);
   const [page, setPage] = useState(0);
 
@@ -38,7 +40,9 @@ export default function Cards() {
     setDataForPage(cutInitialData);
   }, [page]);
 
-  if (!dataForPage)
+  
+
+  if (!dataForPage || numberofInitialCards === 0) {
     <div className="loading">
       <p
         className="
@@ -47,6 +51,7 @@ export default function Cards() {
         Loading
       </p>
     </div>;
+  }
 
   return (
     <div>
