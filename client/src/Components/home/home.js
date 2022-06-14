@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "../navbar/nav";
 import Cards from "../cards/cards";
 import Filter from "../filter/filter";
+import "./home.css"
 
 // import Pagination from "../pagination/pagination";
 
@@ -17,7 +18,7 @@ export default function Home() {
       <div className="body-home">
         <Cards />
       </div>
-      <div></div>
+      {/* <div></div> */}
     </div>
   );
 }

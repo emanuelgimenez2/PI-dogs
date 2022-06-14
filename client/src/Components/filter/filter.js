@@ -1,8 +1,9 @@
 import React from "react";
+import "./filter.css"
 
 export default function Filter() {
   return (
-    <div>
+    <div className="container-filter">
       <select defaultValue={"DEFAULT"}>
         {/* Menu desplegable con opciones */}
         {/* Filtro Ascendente-Descendente */}

@@ -34,6 +34,7 @@ export function getTemperaments() {
 export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
+   
     axios
       .post("http://localhost:3001/dog", payload)
       .then(function (response) {
@@ -45,7 +46,8 @@ export function postDog(payload) {
       })
       .catch(function (error) {
         console.log(error);
-        alert("Error")
+
+       
       });
   };
 }

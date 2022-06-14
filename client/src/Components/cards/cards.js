@@ -1,28 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getDogs } from "../../actions";
 import Card from "../card/card";
-
+import "./cards.scss";
 
 export default function Cards() {
   const dispatch = useDispatch();
   const initialData = useSelector((state) => state.dogs);
-  
-  const numberofInitialCards =  initialData.length;
-  
+
+  const numberofInitialCards = initialData.length;
+
   const numberOfCards = 9;
   const numberOfPages = Math.ceil(numberofInitialCards / numberOfCards);
   const numberOfPagesPagination = [];
- 
+
   const [dataForPage, setDataForPage] = useState(false);
   const [page, setPage] = useState(0);
 
   for (let index = 0; index < numberOfPages; index++) {
     numberOfPagesPagination.push(index + 1);
   }
-
-  
 
   React.useEffect(() => {
     dispatch(getDogs());
@@ -31,7 +29,7 @@ export default function Cards() {
   React.useEffect(() => {
     setDataForPage(initialData.slice(0, 9));
   }, [initialData]);
-  
+
   React.useEffect(() => {
     const cutInitialData = initialData.slice(
       page === 0 ? page : page * 9 - 9,
@@ -40,22 +38,15 @@ export default function Cards() {
     setDataForPage(cutInitialData);
   }, [page]);
 
-  
-
   if (!dataForPage || numberofInitialCards === 0) {
     <div className="loading">
-      <p
-        className="
-    loading-p"
-      >
-        Loading
-      </p>
+      <p className="loading-p">Loading</p>
     </div>;
   }
 
   return (
     <div>
-      <div>
+      <div className="container-cards">
         {dataForPage &&
           dataForPage?.map((dog, index) => (
             <Card

@@ -59,8 +59,7 @@ export default function Detail() {
                 className="pictureDetalle"
               />
             </div>
-          </div>
-          <div>
+            <div>
             <button
               className="button-detail"
               onClick={() => {
@@ -70,6 +69,8 @@ export default function Detail() {
               Volver
             </button>
           </div>
+          </div>
+          
         </div>
       </div>
     </>
