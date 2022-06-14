@@ -57,7 +57,7 @@ export default function Create() {
 
   const handleClick = () => {
     const validationData = Validate(input);
-    console.log(dataReadyForSend)
+
     Object.keys(validationData).length === 0 &&
       dispatch(postDog(dataReadyForSend));
   };

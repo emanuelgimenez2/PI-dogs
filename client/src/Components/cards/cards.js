@@ -9,6 +9,10 @@ export default function Cards() {
   const dispatch = useDispatch();
   const initialData = useSelector((state) => state.dogs);
 
+  console.log('==dogs===>',initialData)
+
+
+
   const numberofInitialCards = initialData.length;
 
   const numberOfCards = 9;
