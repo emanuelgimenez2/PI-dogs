@@ -43,7 +43,7 @@ const getDBinfo = async () => {
 
         const weightMM = []
         d.weight.split("-")?.forEach(element => {
-            weightMM.push(parseInt(element.trim()));
+            weightMM.push(element);
         })
         if (!weightMM[1]) {
             weightMM.push(weightMM[0])

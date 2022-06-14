@@ -1,32 +1,51 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 // import React, { Link } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTemperaments, postDog } from "../../actions";
-import "./create.css";
+import { Validate } from "../../util/validate";
 
+import "./create.css";
 
 export default function Create() {
   var history = useNavigate();
   const dispatch = useDispatch();
-  // const temperament = useSelector((state) => state.temperaments);
-  // const [errors, setErrors] = useState({});
+  const temperamentsDogs = useSelector((state) => state.temperaments);
+  const [input, setInput] = useState({
+    name: "",
+    minimHeight: "",
+    maximHeight: "",
 
+    minimWeight: "",
+    maximWeight: "",
+    maxLifeSpan: "",
+    minLifeSpan: "",
+    image: "",
+    temperament: [],
+  });
+
+  const dataReadyForSend = {
+    name: input.name,
+    height: [input.minimHeight, input.maximHeight],
+    weight: [input.minimWeight, input.maximWeight],
+    life_span: `${input.minLifeSpan}-${input.maxLifeSpan}`,
+    image: input.image,
+    temperament: input.temperament,
+  };
   useEffect(() => {
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, []);
 
-  const [input, setInput] = useState({
-    name: " ",
-    minimHeight: " ",
-    maximHeight: " ",
-    minimWeight: " ",
-    maximWeight: " ",
-    maxLifeSpan: " ",
-    minLifeSpan: " ",
-    image: " ",
-    temperament: [],
+  temperamentsDogs.sort(function (a, b) {
+    if (a > b) {
+      return 1;
+    }
+    if (b > a) {
+      return -1;
+    }
+    return 0;
   });
 
   function handleChange(e) {
@@ -37,7 +56,10 @@ export default function Create() {
   }
 
   const handleClick = () => {
-    dispatch(postDog(input));
+    const validationData = Validate(input);
+    console.log(dataReadyForSend)
+    Object.keys(validationData).length === 0 &&
+      dispatch(postDog(dataReadyForSend));
   };
 
   return (
@@ -60,7 +82,7 @@ export default function Create() {
               <input
                 className="inputs"
                 type="text"
-                name="raza"
+                name="name"
                 value={input.raza}
                 onChange={(e) => handleChange(e)}
                 placeholder="name"
@@ -81,7 +103,7 @@ export default function Create() {
               />
             </div>
             <div className="maxHeight">
-              <label>Tamaño maximo</label>
+              <label>Tamaño Maximo</label>
               <input
                 className="inputs"
                 type="number"
@@ -95,7 +117,7 @@ export default function Create() {
             </div>
 
             <div className="minWeight">
-              <label>peso Minimo</label>
+              <label>Peso Minimo</label>
               <input
                 className="inputs"
                 type="number"
@@ -123,7 +145,7 @@ export default function Create() {
             </div>
 
             <div className="minLifeSpan">
-              <label>años Minimo</label>
+              <label>Años Minimo</label>
               <input
                 className="inputs"
                 type="number"
@@ -154,14 +176,47 @@ export default function Create() {
               <input
                 className="inputs"
                 type="text"
-                min="1"
-                max="21"
-                name="maxLifeSpan"
-                value={input.maxLifeSpan}
+                name="temperament"
+                value={input.temperament}
                 onChange={(e) => handleChange(e)}
                 placeholder="Ingrese su temperamento"
               />
             </div>
+
+            {/* <div>
+                    <select onChange={(e) => handleChange(e)}  className="listTemps">
+                        <option hidden>Temperamentos del perro</option>
+                        { temperamentsDogs.map((temperament) => (
+                          
+                            <option
+                                key={temperament}
+                                value={temperament}
+                            >{temperament}</option>
+                        ))}
+                    </select>
+                    </div>
+
+                    <div className="temperamentsItems">
+                    {input.temperament.map(el =>
+                        <p
+                            key={el}
+                            className="itemsTemperaments">
+                                {el}
+                                <button
+                                    className="buttonRemove"
+                                    
+                                >
+                                <img
+                                    src={""} 
+                                    height="15px"
+                                    weight="15px"
+                                    alt="delete"
+                                    className="imgRemoveTemperament"
+                                    />
+                                </button>
+                            </p>
+                    )}  
+                    </div> */}
           </div>
           <div>
             <button className="buttonsubmit-from" onClick={handleClick}>

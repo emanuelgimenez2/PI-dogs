@@ -42,8 +42,9 @@ router.get("/temperament", async (req, res) => {
 });
 
 router.post("/dog", async (req, res) => {
-  let { name, height, weight, life_span, image, createdAtDb, temperament } =
+  let { name, height, weight, life_span, image, temperament } =
     req.body;
+
 
   await Temperament.findOrCreate({
     where: {
@@ -63,12 +64,11 @@ router.post("/dog", async (req, res) => {
     height,
     weight,
     life_span,
-    image: image ? image : "https://pbs.twimg.com/media/FGfgmSPWQAUDu4l.jpg",
-    createdAtDb,
+    image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
   });
 
   dog.setTemperaments(temperamentDb);
-
+ 
   res.status(200).send("Perrito creado! :D");
 });
 
