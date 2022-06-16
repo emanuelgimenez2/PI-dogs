@@ -33,6 +33,10 @@ export default function Filter() {
           Filter By Temperament
         </option>
       </select>
+      <select defaultValue={"DEFAULT"}>
+        <option value="DEFAULT">Raza Creadas</option>
+        <option value="Raza">Raza Creadas</option>
+      </select>
     </div>
   );
 }

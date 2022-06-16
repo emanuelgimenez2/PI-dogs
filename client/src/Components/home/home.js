@@ -12,9 +12,9 @@ export default function Home() {
       <div className="navigation-home">
         <Nav />
       </div>
-      <div className="filter-home">
+      {/* <div className="filter-home">
         <Filter/>
-      </div>
+      </div> */}
       <div className="body-home">
         <Cards />
       </div>

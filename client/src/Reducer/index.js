@@ -1,4 +1,14 @@
-
+import {
+  GET_DOGS,
+  GET_TEMPERAMENTS,
+  FILTER_BY_TEMPERAMENTS,
+  FILTER_CREATED,
+  ORDER_BY_NAME,
+  ORDER_BY_WEIGHT,
+  GET_DOG_BY_NAME,
+  POST_DOG,
+  
+}from "./constant"
 
 const initialState = {
   dogs: [],

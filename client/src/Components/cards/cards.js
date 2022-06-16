@@ -8,37 +8,31 @@ import "./cards.scss";
 export default function Cards() {
   const dispatch = useDispatch();
   const initialData = useSelector((state) => state.dogs);
-
-
+  
 
   //***********Filtros**************** */
+
   const filterSortaz = (e) => {
-   /*  if (a > b) {
-      return 1;
-    }
-    if (b > a) {
-      return -1;
-    }
-    return 0; */
-  }
+    
+    
+  };
 
-  
   const filterSortza = (e) => {
-  /*   if (a > b) {
-      return -1;
-    }
-    if (b > a) {
-      return 1;
-    }
-    return 0; */
-  }
-  const filterWeight = (e) => {}
-  const filterHeight = (e) => {}
+    initialData.sort((a, b) => {
+      if (b > a) {
+        return 1;
+      }
+      if (a > b) {
+        return -1;
+      }
+      return 0;
+    });
+  };
+  const filterWeight = (e) => {};
+  const filterHeight = (e) => {};
 
 
-
-
-
+  //*************Paginado*********** */
 
   const numberofInitialCards = initialData.length;
 
@@ -75,11 +69,21 @@ export default function Cards() {
     </div>;
   }
 
-
-
-
   return (
     <div>
+      <div>
+      <select defaultValue={"DEFAULT"}>
+        {/* Filtro Ascendente-Descendente */}
+        <option value="DEFAULT" disabled>
+          Ordenar por Nombre
+        </option>
+        <option value="asc" onClick={filterSortaz}>A - Z</option>
+        {/* Ascendente */}
+        <option value="desc">Z - A</option>
+        {/* Descendente */}
+      </select>
+      </div>
+
       <div className="container-cards">
         {dataForPage &&
           dataForPage?.map((dog, index) => (
