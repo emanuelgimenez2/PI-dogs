@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTemperaments, postDog } from "../../actions";
 import { Validate } from "../../util/validate";
-
 import "./create.css";
 
 export default function Create() {
@@ -171,7 +170,7 @@ export default function Create() {
                 placeholder="Breed's life span"
               />
             </div>
-            <div className="maxLifeSpan">
+              <div className="maxLifeSpan">
               <label>Temperamento</label>
               <input
                 className="inputs"
@@ -184,39 +183,17 @@ export default function Create() {
             </div>
 
             {/* <div>
-                    <select onChange={(e) => handleChange(e)}  className="listTemps">
-                        <option hidden>Temperamentos del perro</option>
-                        { temperamentsDogs.map((temperament) => (
-                          
-                            <option
-                                key={temperament}
-                                value={temperament}
-                            >{temperament}</option>
-                        ))}
-                    </select>
-                    </div>
+              <select onChange={(e) => handleChange(e)} className="listTemps">
+                <option hidden>Elija el temperamentos</option>
+                {temperamentsDogs.map((temperament) => (
+                  <option key={temperament} value={temperament}>
+                    {temperament}
+                  </option>
+                ))}
+              </select>
+            </div> */}
 
-                    <div className="temperamentsItems">
-                    {input.temperament.map(el =>
-                        <p
-                            key={el}
-                            className="itemsTemperaments">
-                                {el}
-                                <button
-                                    className="buttonRemove"
-                                    
-                                >
-                                <img
-                                    src={""} 
-                                    height="15px"
-                                    weight="15px"
-                                    alt="delete"
-                                    className="imgRemoveTemperament"
-                                    />
-                                </button>
-                            </p>
-                    )}  
-                    </div> */}
+            
           </div>
           <div>
             <button className="buttonsubmit-from" onClick={handleClick}>

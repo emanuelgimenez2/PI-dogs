@@ -10,9 +10,11 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+
   useEffect(() => {
     dispatch(getDogDetail(id));
   }, [dispatch,id]);
+  
 
   const dog = useSelector((state) => state.detail);
 

@@ -1,11 +1,13 @@
 import React from "react";
-import "./filter.css"
+import { useSelector } from "react-redux";
+import "./filter.css";
 
 export default function Filter() {
+  const initialData = useSelector((state) => state.dogs);
+
   return (
     <div className="container-filter">
       <select defaultValue={"DEFAULT"}>
-        {/* Menu desplegable con opciones */}
         {/* Filtro Ascendente-Descendente */}
         <option value="DEFAULT" disabled>
           Ordenar por Nombre
@@ -14,12 +16,6 @@ export default function Filter() {
         {/* Ascendente */}
         <option value="desc">Z - A</option>
         {/* Descendente */}
-
-        {/* Que necesito para mandar las cosas por 'payload'? Un value en <option>
-                    que me permite acceder y preguntarme... Dentro del <select> tengo <option>
-                    esas 'option' tienen un "value" que permiten que al hacer click desde el front
-                    haga toda la logica y que la action lo entienda, si ese value es 'asc' hace
-                     tal cosa, si el value el 'desc' hace tal otra*/}
       </select>
 
       <select defaultValue={"DEFAULT"}>
@@ -37,8 +33,6 @@ export default function Filter() {
           Filter By Temperament
         </option>
       </select>
-
-      
     </div>
   );
 }

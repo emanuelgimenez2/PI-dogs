@@ -4,7 +4,7 @@ import Cards from "../cards/cards";
 import Filter from "../filter/filter";
 import "./home.css"
 
-// import Pagination from "../pagination/pagination";
+
 
 export default function Home() {
   return (

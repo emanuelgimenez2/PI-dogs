@@ -23,7 +23,7 @@ router.get("/dogs", async function (req, res) {
 
 router.get("/dogs/:id", async (req, res) => {
   const { id } = req.params;
-  const allDogs = await getDetailsDogs();
+  const allDogs = await getAllDogs();//cambie getDetailsDogs por getAllDogs
 
   if (id) {
     let dogId = await allDogs.filter((obj) => obj.id == id);

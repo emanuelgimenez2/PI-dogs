@@ -30,24 +30,19 @@ export function getTemperaments() {
   };
 }
 
-
 export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-   
+
     axios
+
       .post("http://localhost:3001/dog", payload)
       .then(function (response) {
-    
-      const data = JSON.parse(response.status)
-      data === 200 ? alert("Raza creada correctamente") : alert("Error")
-      
-     
+        const data = JSON.parse(response.status);
+        data === 200 ? alert("Raza creada correctamente") : alert("Error");
       })
       .catch(function (error) {
         console.log(error);
-
-       
       });
   };
 }
@@ -92,11 +87,10 @@ export function getDogDetail(id) {
         payload: json.data,
       });
     } catch (error) {
-      alert("error al buscar perro por ID")
+      alert("error al buscar perro por ID");
     }
   };
 }
-
 
 export function getDogName(name) {
   // Por payload me va a llegar lo que el usuario ponga en la barra de busqueda

@@ -9,7 +9,34 @@ export default function Cards() {
   const dispatch = useDispatch();
   const initialData = useSelector((state) => state.dogs);
 
-  console.log('==dogs===>',initialData)
+
+
+  //***********Filtros**************** */
+  const filterSortaz = (e) => {
+   /*  if (a > b) {
+      return 1;
+    }
+    if (b > a) {
+      return -1;
+    }
+    return 0; */
+  }
+
+  
+  const filterSortza = (e) => {
+  /*   if (a > b) {
+      return -1;
+    }
+    if (b > a) {
+      return 1;
+    }
+    return 0; */
+  }
+  const filterWeight = (e) => {}
+  const filterHeight = (e) => {}
+
+
+
 
 
 
@@ -48,6 +75,9 @@ export default function Cards() {
     </div>;
   }
 
+
+
+
   return (
     <div>
       <div className="container-cards">
@@ -59,7 +89,7 @@ export default function Cards() {
               id={dog?.id}
               image={dog?.image}
               name={dog?.name}
-              temperament={dog?.temperament}
+              // temperament={dog?.temperament}
               key={dog?.id}
             />
           ))}

@@ -7,8 +7,6 @@ const getApiInfo = async () => {
   const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`);
 
   const dogInfo = await api.data.map((perro) => {
-    
-
     const heightMM = [];
     perro.height.metric.split("-")?.forEach((element) => {
       heightMM.push(parseInt(element.trim()));
@@ -25,18 +23,17 @@ const getApiInfo = async () => {
     if (!weightMM[1]) {
       weightMM.push(weightMM[0]);
     }
-   
-    const life_SpanAA = []
-    perro.life_span.split("-")?.forEach(element => {
-        life_SpanAA.push(parseInt(element.trim()));
-    })
+
+    const life_SpanAA = [];
+    perro.life_span.split("-")?.forEach((element) => {
+      life_SpanAA.push(parseInt(element.trim()));
+    });
     if (!life_SpanAA[1]) {
-        life_SpanAA.push(life_SpanAA[0])
+      life_SpanAA.push(life_SpanAA[0]);
     }
 
     return {
-    
-
+      id: perro.id,
       name: perro.name,
       height: heightMM,
       weight: weightMM,
@@ -46,8 +43,6 @@ const getApiInfo = async () => {
       origin: perro.origin,
     };
   });
-
-
 
   return dogInfo;
 };
@@ -63,22 +58,11 @@ const getDBinfo = async () => {
     },
   });
 
-
-
-  // console.log('===GKGGKJ===>',dogInDB)
-
-
-  // // const dogInfo = 
-  // await dogInDB.map((d) => {
-  //  return d.dataValues
-  // })
-
   const dogInfo = await dogInDB.map((d) => {
     const weightMM = [];
 
     d.dataValues.weight.forEach((element) => {
-      weightMM.push(element); 
-      
+      weightMM.push(element);
     });
     if (!weightMM[1]) {
       weightMM.push(weightMM[0]);
@@ -94,7 +78,7 @@ const getDBinfo = async () => {
     };
   });
 
-  // return dogInfo;
+  return dogInfo; //estaba comentado entonces no traia lo que estaba en lña base de datos
 };
 
 const getAllDogs = async () => {
@@ -105,7 +89,7 @@ const getAllDogs = async () => {
   return allInfo;
 };
 
-const getDetailsApiInfo = async () => {
+/* const getDetailsApiInfo = async () => {
   const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`);
 
   const dogInfo = await api.data.map((d) => {
@@ -206,8 +190,8 @@ const getDetailsDogs = async () => {
   const allInfo = apiInfo.concat(dbInfo);
 
   return allInfo;
-};
+}; */
 module.exports = {
   getAllDogs,
-  getDetailsDogs,
+  // getDetailsDogs,
 };
