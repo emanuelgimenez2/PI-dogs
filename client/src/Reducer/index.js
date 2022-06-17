@@ -33,13 +33,13 @@ function rootReducer(state = initialState, action) {
       };
 
     case "FILTER_BY_TEMPERAMENTS":
-      console.log("Entre al Reducer ", action.payload);
+      // console.log("Entre al Reducer ", action.payload);
       const alldogs = state.alldogs;
       const temperamentsFiltered = alldogs.filter((el) =>
         el.temperament?.includes(action.payload)
       );
 
-      console.log("temperamentsFiltered", temperamentsFiltered);
+      // console.log("temperamentsFiltered", temperamentsFiltered);
 
       return {
         ...state,
