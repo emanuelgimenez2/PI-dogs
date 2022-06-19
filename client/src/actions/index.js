@@ -1,10 +1,12 @@
 import axios from "axios";
+// import { GET_DETAIL } from "../Reducer/constant";
 
 const GET_DOGS = "GET_DOGS";
 const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 const FILTER_BY_TEMPERAMENTS = "FILTER_BY_TEMPERAMENTS";
 const GET_DOG_DETAIL = "GET_DOG_DETAIL";
-// const GET_DOGS_FAILURE = "GET_DOGS_FAILURE";
+const FILTER_CREATED = "FILTER_CREATED";
+
 
 export function getDogs() {
   return async function (dispatch) {
@@ -50,7 +52,7 @@ export function postDog(payload) {
 // Filtrar por temperament.
 // El payload va a ser el estado que me va a llegar.
 export function filterDogsByTemperament(payload) {
-  console.log("Entre a la Action", payload);
+  // console.log("Entre a la Action", payload);
   return {
     type: FILTER_BY_TEMPERAMENTS,
     payload,
@@ -58,8 +60,10 @@ export function filterDogsByTemperament(payload) {
 }
 
 export function filterCreated(payload) {
+ 
   return {
-    type: "FILTER_CREATED",
+    
+    type: FILTER_CREATED,
     payload,
   };
 }
@@ -79,6 +83,7 @@ export function orderByWeight(payload) {
 }
 
 export function getDogDetail(id) {
+
   return async function (dispatch) {
     try {
       var json = await axios.get(`http://localhost:3001/dogs/${id}`);
@@ -108,3 +113,4 @@ export function getDogName(name) {
     }
   };
 }
+

@@ -1,59 +1,37 @@
-#loader-out {
-    background-color: #18A6A8;
-    position:fixed;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+.loader{
+  font-size: 5rem;
+  color:white;
+  position: relative;
+  /* background-color: red; */
+
+}
+.loader span {
+  mix-blend-mode: difference;
+}
+.loader::after{
+content: " ";
+position: absolute;
+height: calc(100% - 40px);
+left: 0;
+top:20px;
+width: 30%;
+background-color: white;
+z-index: -1;
+color: black;
+overflow: hidden;
+animation: animate 4s infinite linear;
+
+}
+@keyframes animate {
+  0% ,
+  100% {
+    transform: translateX(0px);
   }
-  
-  #loader-container {
-    width: 150px;
-    height: 150px;
-    color: white;
-    margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 5px solid #18A6A8;
-    border-radius: 50%;
-    -webkit-animation: borderScale 1s infinite ease-in-out;
-    animation: borderScale 1s infinite ease-in-out;
+  50% {
+    transform: translateX(250px);
   }
-  
-  #loading-text {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
-    font-size: 1.5em;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+  100% {
+    transform: scale(1);
   }
-  @-webkit-keyframes borderScale {
-    0% {
-      border: 5px solid white;
-    }
-    50% {
-      border: 25px solid #18A6A8;
-    }
-    100% {
-      border: 5px solid white;
-    }
-  }
-  
-  @keyframes borderScale {
-    0% {
-      border: 5px solid white;
-    }
-    50% {
-      border: 25px solid #18A6A8;
-    }
-    100% {
-      border: 5px solid white;
-    }
-  }
+}
+

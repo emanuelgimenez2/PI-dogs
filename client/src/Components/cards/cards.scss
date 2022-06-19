@@ -18,3 +18,12 @@
   justify-content: center;
   margin: 0 auto;
 }
+.Filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+}
+.loading{
+  background-color: red;
+}

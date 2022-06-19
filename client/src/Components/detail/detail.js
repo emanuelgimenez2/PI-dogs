@@ -2,22 +2,20 @@ import React, { Fragment, useEffect } from "react";
 import "./detail.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogDetail } from "../../actions/index";
+// import { getDogDetail } from "../../actions/index";
 import img from "../../assets/img/404.jpg";
+import { getDogDetail } from "../../actions";
 
 export default function Detail() {
   var history = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
 
-
   useEffect(() => {
     dispatch(getDogDetail(id));
-  }, [dispatch,id]);
-  
+  }, [dispatch, id]);
 
   const dog = useSelector((state) => state.detail);
-
 
   if (dog.length === 0) {
     return (
@@ -30,6 +28,7 @@ export default function Detail() {
   return (
     <>
       <div className="container-detail">
+        
         <div className="card-detail">
           <div className="content-detail">
             <h1 className="name-detail">{dog[0].name} </h1>
@@ -62,17 +61,16 @@ export default function Detail() {
               />
             </div>
             <div>
-            <button
-              className="button-detail"
-              onClick={() => {
-                history("/home");
-              }}
-            >
-              Volver
-            </button>
+              <button
+                className="button-detail"
+                onClick={() => {
+                  history("/home");
+                }}
+              >
+                Volver
+              </button>
+            </div>
           </div>
-          </div>
-          
         </div>
       </div>
     </>

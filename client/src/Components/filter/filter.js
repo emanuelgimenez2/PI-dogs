@@ -1,42 +1,116 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./filter.css";
+import {
+  filterCreated,
+  filterDogsByTemperament,
+  getDogs,
+  getTemperaments,
+  orderByName,
+  orderByWeight,
+} from "../../actions";
 
 export default function Filter() {
-  const initialData = useSelector((state) => state.dogs);
+  const dispatch = useDispatch();
+  const temperamentsHome = useSelector((state) => state.temperaments);
+
+
+
+  const incialData = useSelector((state) => state.dogs);
+
+  // Cambiar estado del Numero de Pagina
+
+  //*******************datos******************* */
+    useEffect(() => {
+    dispatch(getDogs());
+    dispatch(getTemperaments());
+  }, [dispatch]);
+/*
+  //*******************Filtros******************* */
+  /**const [order, setOrder] = useState("");
+
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getDogs());
+  }
+
+  function handleSelect(e) {
+    e.preventDefault();
+    dispatch(filterDogsByTemperament(e.target.value));
+  }
+*/
+  function handleFilterCreated(e) {
+    console.log( e,"===================handleFilterCreated===============")
+    e.preventDefault();
+    dispatch(filterCreated(e.target.value));
+  }
+/*
+  function handleOrderByName(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrder(`Ordened ${e.target.value}`);
+  }
+  function handleOrderByWeight(e) {
+    e.preventDefault();
+    dispatch(orderByWeight(e.target.value));
+    setCurrentPage(1);
+    setOrder(`Ordened ${e.target.value}`); */
 
   return (
-    <div className="container-filter">
-      <select defaultValue={"DEFAULT"}>
-        {/* Filtro Ascendente-Descendente */}
-        <option value="DEFAULT" disabled>
-          Ordenar por Nombre
-        </option>
-        <option value="asc">A - Z</option>
-        {/* Ascendente */}
-        <option value="desc">Z - A</option>
-        {/* Descendente */}
-      </select>
+    <div className="card-filter">
+      <div className="filters">
+        {" "}
+        <select
+          defaultValue={"DEFAULT"}
+          onChange={""}
+          className="select-filter"
+        >
+          <option value="DEFAULT" disabled>
+            Order By Name
+          </option>
+          <option value="asc">A - Z</option>
 
-      <select defaultValue={"DEFAULT"}>
-        <option value="DEFAULT" disabled>
-          Order By Weight
-        </option>
-        <option value="+weight">Lightest</option>
-        {/* Mayor Peso */}
-        <option value="-weight">Heaviest</option>
-        {/* Menor Peso */}
-      </select>
+          <option value="desc">Z - A</option>
+        </select>
+        <select
+          defaultValue={"DEFAULT"}
+          onChange={""}
+          className="select-filter"
+        >
+          <option value="DEFAULT" disabled>
+            Order By Weight
+          </option>
+          <option value="+weight">Lightest</option>
 
-      <select defaultValue={"DEFAULT"}>
-        <option value="DEFAULT" disabled>
-          Filter By Temperament
-        </option>
-      </select>
-      <select defaultValue={"DEFAULT"}>
-        <option value="DEFAULT">Raza Creadas</option>
-        <option value="Raza">Raza Creadas</option>
-      </select>
+          <option value="-weight">Heaviest</option>
+        </select>
+        <select
+          defaultValue={"DEFAULT"}
+          onChange={""}
+          className="select-filter"
+        >
+          <option value="DEFAULT" disabled>
+            Filter By Temperament
+          </option>
+          {temperamentsHome.map((temp, key) => (
+            <option value={temp.name} key={key}>
+              {temp.name}
+            </option>
+          ))}
+        </select>
+        <select
+          defaultValue={"DEFAULT"}
+          onChange={(e) =>  handleFilterCreated(e)}
+          className="select-filter"
+        >
+          <option value="DEFAULT" disabled>
+            Filter Created
+          </option>
+          <option value="All">All</option>
+          <option value="Created">Created</option>
+        </select>
+      </div>
     </div>
   );
 }

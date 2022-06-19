@@ -47,12 +47,21 @@ export default function Create() {
     return 0;
   });
 
+
+ 
+
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
   }
+  const handleDelete = (e) => {
+    setInput({
+        ...input,
+        temperament: input.temperament.filter(el => el !== e)
+    })
+}
 
   const handleClick = () => {
     const validationData = Validate(input);
@@ -170,30 +179,39 @@ export default function Create() {
                 placeholder="Breed's life span"
               />
             </div>
-              <div className="maxLifeSpan">
-              <label>Temperamento</label>
-              <input
-                className="inputs"
-                type="text"
-                name="temperament"
-                value={input.temperament}
-                onChange={(e) => handleChange(e)}
-                placeholder="Ingrese su temperamento"
-              />
-            </div>
-
-            {/* <div>
+            <div>
               <select onChange={(e) => handleChange(e)} className="listTemps">
                 <option hidden>Elija el temperamentos</option>
                 {temperamentsDogs.map((temperament) => (
                   <option key={temperament} value={temperament}>
                     {temperament}
+                    
                   </option>
                 ))}
               </select>
-            </div> */}
-
-            
+              
+            </div>
+            <div className="temperamentsItems">
+                    {input.temperament.map(el =>
+                        <p
+                            key={el}
+                            className="itemsTemperaments">
+                                {el}
+                                <button
+                                    className="buttonRemove"
+                                    onClick={() => handleDelete(el)}
+                                >
+                                <img
+                                    src={""} 
+                                    height="15px"
+                                    weight="15px"
+                                    alt="delete"
+                                    className="imgRemoveTemperament"
+                                    />
+                                </button>
+                            </p>
+                    )}  
+             </div>
           </div>
           <div>
             <button className="buttonsubmit-from" onClick={handleClick}>
