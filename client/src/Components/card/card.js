@@ -6,16 +6,13 @@ import "./card.scss";
 
 export default function Card({ image, name, temperament, weight, height, id }) {
   var history = useNavigate();
-  
 
   return (
-    <>
-      <div
-        onClick={() => {
-          history(`/home/${id}`);
-        }}
-        className="card-container"
-      >
+    
+      <div className="container-card">
+        <div className="detail-card" onClick={() => {history(`/home/${id}`)}}>
+     
+        
         <div className="card-title">
           <h2 className="nameHome">{name}</h2>
         </div>
@@ -33,6 +30,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
           <h3 className="temp">Temperamento: {temperament} </h3>
         </div>
       </div>
-    </>
+      </div>
+    
   );
 }

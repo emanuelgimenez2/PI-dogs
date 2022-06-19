@@ -1,11 +1,11 @@
-.card-container {
+.container-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     // margin: 0 auto;
-    width: 20%;
-    height: 100%;
+    width: 200px;
+    height: 300px;
     
 
   border-radius: 30px;
@@ -16,7 +16,7 @@
   -moz-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
   
 
-  .card-title {
+  .card-title img  {
     .nameHome {
       margin: 0;
     }
@@ -26,8 +26,8 @@
 
 
     .image{
-      width: 100%;
-      height: 100%;
+      width: 200px;
+      height: 200px;
       border-radius: 30px;
       object-fit: cover;
     }

@@ -17,6 +17,7 @@ export default function Filter() {
 
 
   const incialData = useSelector((state) => state.dogs);
+  const [order, setOrder] = useState([]);
 
   // Cambiar estado del Numero de Pagina
 
@@ -44,13 +45,15 @@ export default function Filter() {
     e.preventDefault();
     dispatch(filterCreated(e.target.value));
   }
-/*
+
   function handleOrderByName(e) {
+    console.log( e,"===================handleOrderByName===============")
     e.preventDefault();
     dispatch(orderByName(e.target.value));
-    setCurrentPage(1);
+    // setCurrentPage(1);
     setOrder(`Ordened ${e.target.value}`);
   }
+  /*
   function handleOrderByWeight(e) {
     e.preventDefault();
     dispatch(orderByWeight(e.target.value));
@@ -63,8 +66,9 @@ export default function Filter() {
         {" "}
         <select
           defaultValue={"DEFAULT"}
-          onChange={""}
+          onChange={(e) =>  handleOrderByName(e)}
           className="select-filter"
+
         >
           <option value="DEFAULT" disabled>
             Order By Name

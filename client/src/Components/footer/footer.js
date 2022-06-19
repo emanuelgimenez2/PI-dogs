@@ -5,6 +5,9 @@ export default function Footer() {
   return (
     <Fragment>
       <div className="container-footer">
+        <div>
+          <h2>Si te gusto, puedes contactarme </h2>
+        </div>
         <ul className="list-footer">
           <li className="list">
             <a className="red-footer-tw" href="https://twitter.com/">

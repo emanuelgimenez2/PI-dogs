@@ -55,6 +55,41 @@ function rootReducer(state = initialState, action) {
       };
 
     case ORDER_BY_NAME:
+      console.log("===================handleOrderByName===============")
+       if (action.payload === "default") {
+                return {
+                    ...state,
+                    dogs: state.dogs
+                }
+            }
+            if (action.payload === "Asc") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        if (b.name > a.name) {
+                            return -1;
+                        }
+                        return 0
+                    })
+                }
+            }
+            if (action.payload === "Des") {
+                return {
+                    ...state,
+                    dogs: state.dogs.sort(function (a, b) {
+                        if (a.name > b.name) {
+                            return -1;
+                        }
+                        if (b.name > a.name) {
+                            return 1
+                        }
+                        return 0;
+                    })
+                }
+            }
       const sortedArr =
         action.payload === "asc"
           ? state.dogs.sort(function (a, b) {
