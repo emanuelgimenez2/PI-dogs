@@ -10,7 +10,7 @@
     margin: 0.5ex; 
     border-radius: 5ex;
     border: transparent;
-    color: blue;
+    color: rgb(246, 246, 248);
     transition: 0.3s;
     cursor: pointer;
 }
@@ -25,6 +25,6 @@
 {
     transition-delay: 0s;
     color: rgb(0, 255, 21);
-    box-shadow: 0 0 40px rgb(59, 221, 10);        
+    box-shadow: 0 0 60px rgb(59, 221, 10);        
     transform: translateY(1ex);  
 }

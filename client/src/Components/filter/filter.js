@@ -1,118 +1,104 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./filter.css";
+import { getDogs, getTemperaments } from "../../actions";
 import {
-  filterCreated,
-  filterDogsByTemperament,
-  getDogs,
-  getTemperaments,
-  orderByName,
-  orderByWeight,
-} from "../../actions";
+  FILTER_BY_TEMPERAMENTS,
+  FILTER_CREATED,
+  ORDER_BY_NAME,
+  ORDER_BY_WEIGHT,
+} from "../../Reducer/constant";
 
 export default function Filter() {
+  const temperamentsData = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
-  const temperamentsHome = useSelector((state) => state.temperaments);
+  const [order, setOrder] = useState(false);
+  const [weight, setWeight] = useState(false);
+  const [temperament, setTemperament] = useState(false);
+  const [created, setCreated] = useState(false);
 
-
-
-  const incialData = useSelector((state) => state.dogs);
-  const [order, setOrder] = useState([]);
-
-  // Cambiar estado del Numero de Pagina
-
-  //*******************datos******************* */
-    useEffect(() => {
-    dispatch(getDogs());
-    dispatch(getTemperaments());
-  }, [dispatch]);
-/*
   //*******************Filtros******************* */
-  /**const [order, setOrder] = useState("");
 
-  function handleClick(e) {
-    e.preventDefault();
-    dispatch(getDogs());
-  }
-
-  function handleSelect(e) {
-    e.preventDefault();
-    dispatch(filterDogsByTemperament(e.target.value));
-  }
-*/
-  function handleFilterCreated(e) {
-    console.log( e,"===================handleFilterCreated===============")
-    e.preventDefault();
-    dispatch(filterCreated(e.target.value));
+  async function handleOrderByName() {
+    await dispatch(getDogs());
+    await dispatch({ type: ORDER_BY_NAME, payload: order });
   }
 
-  function handleOrderByName(e) {
-    console.log( e,"===================handleOrderByName===============")
-    e.preventDefault();
-    dispatch(orderByName(e.target.value));
-    // setCurrentPage(1);
-    setOrder(`Ordened ${e.target.value}`);
+  async function handleOrderByWeight() {
+    await dispatch(getDogs());
+    await dispatch({ type: ORDER_BY_WEIGHT, payload: weight });
   }
-  /*
-  function handleOrderByWeight(e) {
-    e.preventDefault();
-    dispatch(orderByWeight(e.target.value));
-    setCurrentPage(1);
-    setOrder(`Ordened ${e.target.value}`); */
+  async function handleTemperament() {
+    await dispatch(getDogs());
+    await dispatch({ type: FILTER_BY_TEMPERAMENTS, payload: temperament });
+  }
+  async function handleCreated() {
+    await dispatch(getDogs());
+    await dispatch({ type: FILTER_CREATED, payload: created });
+  }
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, []);
+
+  useEffect(() => {
+   order && handleOrderByName();
+  }, [order]);
+  useEffect(() => {
+   weight && handleOrderByWeight();
+  }, [weight]);
+
+  useEffect(() => {
+    temperament && handleTemperament();
+  }, [temperament]);
+
+  useEffect(() => {
+    created && handleCreated();
+  }, [created]);
 
   return (
     <div className="card-filter">
       <div className="filters">
-        {" "}
         <select
-          defaultValue={"DEFAULT"}
-          onChange={(e) =>  handleOrderByName(e)}
+          onChange={(e) => setOrder(e.target.value)}
           className="select-filter"
-
         >
-          <option value="DEFAULT" disabled>
-            Order By Name
-          </option>
+          <option>Ordenar Alfabeticamente</option>
           <option value="asc">A - Z</option>
 
           <option value="desc">Z - A</option>
         </select>
-        <select
-          defaultValue={"DEFAULT"}
-          onChange={""}
-          className="select-filter"
-        >
-          <option value="DEFAULT" disabled>
-            Order By Weight
-          </option>
-          <option value="+weight">Lightest</option>
 
-          <option value="-weight">Heaviest</option>
+        <select
+          className="select-filter"
+          onChange={(e) => setWeight(e.target.value)}
+        >
+          <option>Ordenar por peso</option>
+          <option value="+peso">Mayor Peso</option>
+
+          <option value="-peso">Menor Peso</option>
         </select>
         <select
-          defaultValue={"DEFAULT"}
-          onChange={""}
+          onChange={(e) => setTemperament(e.target.value)}
           className="select-filter"
         >
-          <option value="DEFAULT" disabled>
-            Filter By Temperament
-          </option>
-          {temperamentsHome.map((temp, key) => (
-            <option value={temp.name} key={key}>
-              {temp.name}
+          <option>Temperamentos</option>
+          {temperamentsData.map((temp, i) => (
+            <option value={temp} key={i}>
+              {temp}
             </option>
           ))}
         </select>
+
         <select
           defaultValue={"DEFAULT"}
-          onChange={(e) =>  handleFilterCreated(e)}
+          onChange={(e) => setCreated(e.target.value)}
           className="select-filter"
         >
           <option value="DEFAULT" disabled>
-            Filter Created
+            Creados/Todos
           </option>
-          <option value="All">All</option>
-          <option value="Created">Created</option>
+          <option value="Api">Todos</option>
+          <option value="Db">Creados</option>
         </select>
       </div>
     </div>

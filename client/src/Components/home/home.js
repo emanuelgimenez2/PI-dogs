@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../navbar/nav";
 import Cards from "../cards/cards";
-import Filter from "../filter/Filter";
+import Filter from "../filter/filter";
 import "./home.css";
-import Footer from "../footer/footer";
+import { useDispatch } from "react-redux";
+import { getDogs } from "../../actions";
 
 export default function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDogs());
+  }, []);
+
   return (
     <div className="container-home">
       <div className="navigation-home">
@@ -16,9 +23,6 @@ export default function Home() {
       </div>
       <div className="body-home">
         <Cards />
-      </div>
-      <div className="body-footer">
-        <Footer/>{/*  */}
       </div>
     </div>
   );
