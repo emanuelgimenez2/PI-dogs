@@ -23,70 +23,25 @@ export default function Create() {
   const [temperament, setTemperament] = useState();
   const [dataDog, setDataDog] = useState([]);
 
+  function capitalizarPrimeraLetra(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   var data = {
-    name: name,
+    name: capitalizarPrimeraLetra(name),
     height: [minHeight, maxHeight],
     weight: [minWeight, maxWeight],
     life_span: `${minLifeSpan},${maxLifeSpan}`,
     temperament: dataDog,
   };
 
-  // const [input, setInput] = useState({
-  //   name: "",
-  //   minimHeight: "",
-  //   maximHeight: "",
 
-  //   minimWeight: "",
-  //   maximWeight: "",
-  //   maxLifeSpan: "",
-  //   minLifeSpan: "",
-  //   image: "",
-  //   temperament: [],
-  // });
-
-  // const dataReadyForSend = {
-  //   name: input.name,
-  //   height: [input.minimHeight, input.maximHeight],
-  //   weight: [input.minimWeight, input.maximWeight],
-  //   life_span: `${input.minLifeSpan}-${input.maxLifeSpan}`,
-  //   image: input.image,
-  //   temperament: input.temperament,
-  // };
 
   useEffect(() => {
     dispatch(getTemperaments());
   }, []);
 
-  //   function handleChange(e) {
-
-  //     setInput({
-  //       ...input,
-  //       [e.target.name]: e.target.value,
-  //     });
-  //   }
-
-  //   function handleSelec(e) {
-
-  //     setInput({
-  //       ...input,
-  //       [e.target.name]: e.target.value,
-  //     });
-  //   }
-
-  //   const handleDelete = (e) => {
-  //     setInput({
-  //         ...input,
-  //         temperament: input.temperament.filter(el => el !== e)
-  //     })
-  // }
-
-  //   const handleClick = () => {
-  //     const validationData = Validate(input);
-
-  //     Object.keys(validationData).length === 0 &&
-  //       dispatch(postDog(dataReadyForSend));
-  //   };
-
+  
   const sendData = async () => {
     let validatedData = Validate(data);
     console.log("===validatedata=>", validatedData);
@@ -104,7 +59,7 @@ export default function Create() {
     setDataDog(tempDataDog);
   };
 
-  // console.log('data===>',data)
+  
   useEffect(() => {
     if (statusPost === true) {
       setName("");

@@ -21,6 +21,8 @@ export default function Cards() {
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDog = initialData.slice(indexOfFirstDog, indexOfLastDog);
 
+  console.log('==currentdog==>',currentDog)
+
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -32,17 +34,6 @@ export default function Cards() {
       </div>
     );
   }
- /*  const idn = currentDog.map((item) => {
-    const idt=item.id
-    if (idt === "number") {
-      return item.id;
-    }
-    else
-    idt.slice(0, -3);
-  }
-  );
-  console.log(idn);
- */
 
   return (
     <div>
@@ -55,50 +46,18 @@ export default function Cards() {
       </div>
       <div className="container-cards">
         {currentDog.map((dog, index) => {
-          // console.log("=======================",dog.temperament)
-          // let tempDataDog=[]
-          // let temperamentArray = dog.temperament 
-          // let temperamentString = dog.temperament !== undefined && dog.temperament.split(",");
-
-          // // console.log('===temperamentString====>',temperamentString)
-          // // console.log('===temperamentString====>',)
-
-          // for (let i = 0; i < temperamentString.length; i++) {
-          //    tempDataDog.push({name:temperamentString[i]})
-            
-          
-
-          // let dataTemperament = dog.temperament
-          
-          
-          
-          // Array.isArray(dog.temperament)
-          //   ? temperamentArray
-          //   : tempDataDog;
-        // }}
-        
-
           return (
             <Card
               height={dog?.height}
               weight={dog?.weight}
               id={dog?.id}
-              image={dog.image?dog.image : loader}
+              image={dog.image ? dog.image : loader}
               name={dog?.name}
               temperament={dog.temperament}
               key={dog?.id}
             />
           );
         })}
-      </div>
-
-      <div>
-        {/* <Pagination
-          dogsPerPage={dogsPerPage}
-          allDogs={initialData.length - 1}
-          page={pagination}
-        /> */}
-        
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ router.get("/dogs", async function (req, res) {
 
 router.get("/dogs/:id", async (req, res) => {
   const { id } = req.params;
-  const allDogs = await getAllDogs();//cambie getDetailsDogs por getAllDogs
+  const allDogs = await getAllDogs(); //cambie getDetailsDogs por getAllDogs
 
   if (id) {
     let dogId = await allDogs.filter((obj) => obj.id == id);
@@ -42,55 +42,35 @@ router.get("/temperament", async (req, res) => {
 });
 
 router.post("/dog", async (req, res) => {
-  let { name, height, weight, life_span, image, temperament } =
-    req.body;
+  let { name, height, weight, life_span, image, temperament } = req.body;
 
-    let dog = await Dog.create({
-      name,
-      height,
-      weight,
-      life_span,
-      image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
+  let dog = await Dog.create({
+    name,
+    height,
+    weight,
+    life_span,
+    image: image
+      ? image
+      : "https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
+  });
+
+  for (let i = 0; i < temperament.length; i++) {
+    await Temperament.findOrCreate({
+      where: {
+        name: temperament[i],
+      },
+      defaults: {
+        name: temperament[i],
+      },
     });
 
+    let temperamentDb = await Temperament.findAll({
+      where: { name: temperament[i] },
+    });
 
-    let pepe=[]
+    await dog.addTemperaments(temperamentDb);
+  }
 
-
-    for (let i = 0; i < temperament.length; i++) {
-      
-      let temperamentDb =await Temperament.findOrCreate({
-        where: {
-          name: temperament[i],
-        },
-        defaults: {
-          name: temperament[i],
-        },
-      });
-
-    
-    
-      // let temperamentDb = await Temperament.findAll({
-      //   where: { name: temperament[i] },
-      // });
-      // console.log('=====11111===>',temperamentDb)
-      pepe.push(temperamentDb)
-    
- 
-    
-      // dog.setTemperaments(temperamentDb);
-    }
-  
-
-    // console.log('=====22222===>',pepe)
-    for (let index = 0; index < pepe.length; index++) {
-      dog.setTemperaments(pepe[index]);
-      
-    }
-    
-
-  
- 
   res.status(200).send("Perrito creado! :D");
 });
 

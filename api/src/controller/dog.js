@@ -8,9 +8,11 @@ const getApiInfo = async () => {
 
   const dogInfo = await api.data.map((perro) => {
     const newTemperament = [];
-    perro.temperament !== undefined ? perro.temperament.split(",").forEach((element) => {
-      newTemperament.push({name:element.trim()});
-    }) : newTemperament.push({name:'no existe'});
+    perro.temperament !== undefined
+      ? perro.temperament.split(",").forEach((element) => {
+          newTemperament.push({ name: element.trim() });
+        })
+      : newTemperament.push({ name: "no existe" });
 
     const heightMM = [];
     perro.height.metric.split("-")?.forEach((element) => {
@@ -36,8 +38,6 @@ const getApiInfo = async () => {
     if (!life_SpanAA[1]) {
       life_SpanAA.push(life_SpanAA[0]);
     }
-
-    
 
     return {
       id: perro.id,
@@ -66,6 +66,7 @@ const getDBinfo = async () => {
   });
 
   const dogInfo = await dogInDB.map((d) => {
+    // console.log('=====d=====>',d)
     const weightMM = [];
 
     d.dataValues.weight.forEach((element) => {
@@ -74,10 +75,21 @@ const getDBinfo = async () => {
     if (!weightMM[1]) {
       weightMM.push(weightMM[0]);
     }
+    const life_SpanAA = [];
+    d.life_span.split("-")?.forEach((element) => {
+      life_SpanAA.push(parseInt(element.trim()));
+    });
+    if (!life_SpanAA[1]) {
+      life_SpanAA.push(life_SpanAA[0]);
+    }
+
+    
 
     return {
       id: d.dataValues.id,
       name: d.dataValues.name,
+      height: d.dataValues.height,
+      lifeSpan: life_SpanAA,
       weight: weightMM,
       image: d.dataValues.image,
       temperament: d.dataValues.temperaments,

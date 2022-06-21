@@ -12,6 +12,7 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  // console.log('====id====>',id)
 
   useEffect(() => {
     dispatch(getDogDetail(id));
@@ -19,7 +20,7 @@ export default function Detail() {
 
   const dog = useSelector((state) => state.detail);
 
- 
+  console.log("====dog===>", dog);
 
   if (dog.length === 0) {
     return (
@@ -29,18 +30,17 @@ export default function Detail() {
     );
   }
 
-
+  // const tempLifeSpan = dog[0].lifeSpan.split(',')
 
   return (
     <>
       <div className="container-detail">
-        
         <div className="card-detail">
           <div className="content-detail">
             <h1 className="name-detail">{dog[0].name} </h1>
             <div className="wightHeight">
               <h3 className="wightHeightLifeSpan">
-                Altura minimo:{dog[0]?.height[0] ?? "no existe"}{" "}
+                Altura minimo:{dog[0].height[0] ?? "no existe"}{" "}
               </h3>
               <h3 className="wightHeightLifeSpan">
                 Altura maximo:{dog[0]?.height[1] ?? "no existe"}{" "}
@@ -53,11 +53,14 @@ export default function Detail() {
               </h3>
             </div>
             <h3 className="wightHeightLifeSpan">
-              Esperanza de vida:{dog[0]?.lifeSpan[1] ?? "no existe"}{" "}
+              {dog[0].lifeSpan}
+              {/* Esperanza de vida:{lifeSpan.length>0 ?`de ${lifeSpan[0]} a ${lifeSpan[1]} años` : "no existe"} */}
             </h3>
 
             <h2 className="temperamentDetalle">
-              Temperamentos: {dog[0]?.temperament[1] ?? "no existe"}
+              Temperamentos:{" "}
+              {dog[0].temperament.length > 0 &&
+                dog[0].temperament.map((d) => d.name)}
             </h2>
             <div className="divImgDetail">
               <img

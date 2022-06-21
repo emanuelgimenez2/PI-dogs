@@ -90,15 +90,17 @@ export function orderByWeight(payload) {
 
 export function getDogDetail(id) {
   return async function (dispatch) {
-    try {
-      var json = await axios.get(`http://localhost:3001/dogs/${id}`);
+    // try {
+      let data = await axios.get(`http://localhost:3001/dogs/${id}`);
+      let response = await data.data
+
       return dispatch({
         type: GET_DOG_DETAIL,
-        payload: json.data,
+        payload: response,
       });
-    } catch (error) {
-      alert("error al buscar perro por ID");
-    }
+    // } catch (error) {
+    //   alert("error al buscar perro por ID");
+    // }
   };
 }
 
