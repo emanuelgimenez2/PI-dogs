@@ -28,3 +28,6 @@
     box-shadow: 0 0 60px rgb(59, 221, 10);        
     transform: translateY(1ex);  
 }
+.button-pagination:focus {
+    color: rgb(36, 33, 241);
+    transform: translateY(1ex);}

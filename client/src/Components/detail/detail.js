@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 // import { getDogDetail } from "../../actions/index";
 import img from "../../assets/img/404.jpg";
 import { getDogDetail } from "../../actions";
+import loader from "../../assets/gifloader.gif";
 
 export default function Detail() {
   var history = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
+
 
   useEffect(() => {
     dispatch(getDogDetail(id));
@@ -17,13 +19,17 @@ export default function Detail() {
 
   const dog = useSelector((state) => state.detail);
 
+ 
+
   if (dog.length === 0) {
     return (
-      <div>
-        <p>Loading....</p>
+      <div className="loader">
+        <img src={loader} alt="loader" />
       </div>
     );
   }
+
+
 
   return (
     <>

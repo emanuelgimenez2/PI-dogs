@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import loaderimage from "../../assets/loaderimage.gif";
 
 import "./card.scss";
 
@@ -19,7 +19,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
         </div>
         <div className="image-card">
           <img
-            src={image}
+            src={image? image: loaderimage}
             alt="Imagen del Perro"
             whidth="150px"
             height="150px"
@@ -30,7 +30,7 @@ export default function Card({ image, name, temperament, weight, height, id }) {
           <h3 className="weightHome">Peso: {`${weight[0]}kg  `}</h3>
           <h3 className="temp">Temperamento: </h3>
 
-          {/* {temperament.map((item, index) => {
+        {/*   {temperament.map((item, index) => { error rompe
             
             return <h3 key={index}>{item}</h3>;
           })} */}

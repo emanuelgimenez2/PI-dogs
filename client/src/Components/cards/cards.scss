@@ -6,6 +6,7 @@
   grid-gap: 40px;
   margin: 0 auto;
   padding: 100px 0;
+  // background-image: url(../../assets/img/fondocontacto.jpg);
 }
 
 .pagination {
@@ -19,6 +20,12 @@
   margin: 0 auto;
 }
 .Filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+}
+.loader{
   display: flex;
   flex-direction: row;
   justify-content: center;

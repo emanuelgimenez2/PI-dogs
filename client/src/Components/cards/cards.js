@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Card from "../card/card";
 import Pagination from "../pagination/pagination";
+import loader from "../../assets/gifloader.gif";
 
 import "./cards.scss";
 
@@ -24,26 +25,24 @@ export default function Cards() {
     setCurrentPage(pageNumber);
   };
 
-  // if (!currentDog) {
-  //   return (
-  //     // <div>
-  //     //   <img src="https://loading.io/asset/580931" />
-  //     // </div>
-  //   );
-  // }
-
-   console.log('=============initialdata================>',initialData)
-//  console.log('=============data================>',currentDog)
-//  console.log('=============dcurrentpage================>',currentPage)
-
-
-  if(currentDog.length === 0){
-    return(
-      <div style={{background:'red',minHeight:'100vh'}}>
-        <p>loading</p>
+  if (currentDog.length === 0) {
+    return (
+      <div className="loader">
+        <img src={loader} alt="loader" />
       </div>
-    )
+    );
   }
+ /*  const idn = currentDog.map((item) => {
+    const idt=item.id
+    if (idt === "number") {
+      return item.id;
+    }
+    else
+    idt.slice(0, -3);
+  }
+  );
+  console.log(idn);
+ */
 
   return (
     <div>
@@ -55,7 +54,7 @@ export default function Cards() {
         />
       </div>
       <div className="container-cards">
-        { currentDog.map((dog, index) => {
+        {currentDog.map((dog, index) => {
           // let temperamentArray = dog?.temperament ? dog?.temperament : [];
           // let temperamentString = dog?.temperament.length > 0 ? dog?.temperament.split(",") : 'eppe';
 

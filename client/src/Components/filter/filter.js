@@ -95,9 +95,9 @@ export default function Filter() {
           className="select-filter"
         >
           <option value="DEFAULT" disabled>
-            Creados/Todos
+            Creados/API
           </option>
-          <option value="Api">Todos</option>
+          <option value="Api">API</option>
           <option value="Db">Creados</option>
         </select>
       </div>
