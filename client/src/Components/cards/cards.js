@@ -55,21 +55,37 @@ export default function Cards() {
       </div>
       <div className="container-cards">
         {currentDog.map((dog, index) => {
-          // let temperamentArray = dog?.temperament ? dog?.temperament : [];
-          // let temperamentString = dog?.temperament.length > 0 ? dog?.temperament.split(",") : 'eppe';
+          // console.log("=======================",dog.temperament)
+          // let tempDataDog=[]
+          // let temperamentArray = dog.temperament 
+          // let temperamentString = dog.temperament !== undefined && dog.temperament.split(",");
 
-          // let dataTemperament = Array.isArray(dog?.temperament)
+          // // console.log('===temperamentString====>',temperamentString)
+          // // console.log('===temperamentString====>',)
+
+          // for (let i = 0; i < temperamentString.length; i++) {
+          //    tempDataDog.push({name:temperamentString[i]})
+            
+          
+
+          // let dataTemperament = dog.temperament
+          
+          
+          
+          // Array.isArray(dog.temperament)
           //   ? temperamentArray
-          //   : temperamentString;
+          //   : tempDataDog;
+        // }}
+        
 
           return (
             <Card
               height={dog?.height}
               weight={dog?.weight}
               id={dog?.id}
-              image={dog.image}
+              image={dog.image?dog.image : loader}
               name={dog?.name}
-              // temperament={dataTemperament}
+              temperament={dog.temperament}
               key={dog?.id}
             />
           );
@@ -82,6 +98,7 @@ export default function Cards() {
           allDogs={initialData.length - 1}
           page={pagination}
         /> */}
+        
       </div>
     </div>
   );

@@ -45,10 +45,21 @@ router.post("/dog", async (req, res) => {
   let { name, height, weight, life_span, image, temperament } =
     req.body;
 
+    let dog = await Dog.create({
+      name,
+      height,
+      weight,
+      life_span,
+      image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
+    });
+
+
+    let pepe=[]
+
 
     for (let i = 0; i < temperament.length; i++) {
       
-      await Temperament.findOrCreate({
+      let temperamentDb =await Temperament.findOrCreate({
         where: {
           name: temperament[i],
         },
@@ -56,21 +67,27 @@ router.post("/dog", async (req, res) => {
           name: temperament[i],
         },
       });
+
     
-      let temperamentDb = await Temperament.findAll({
-        where: { name: temperament[i] },
-      });
     
-      let dog = await Dog.create({
-        name,
-        height,
-        weight,
-        life_span,
-        image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
-      });
+      // let temperamentDb = await Temperament.findAll({
+      //   where: { name: temperament[i] },
+      // });
+      // console.log('=====11111===>',temperamentDb)
+      pepe.push(temperamentDb)
     
-      dog.setTemperaments(temperamentDb);
+ 
+    
+      // dog.setTemperaments(temperamentDb);
     }
+  
+
+    // console.log('=====22222===>',pepe)
+    for (let index = 0; index < pepe.length; index++) {
+      dog.setTemperaments(pepe[index]);
+      
+    }
+    
 
   
  

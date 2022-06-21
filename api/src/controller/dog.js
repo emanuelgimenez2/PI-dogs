@@ -7,6 +7,11 @@ const getApiInfo = async () => {
   const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`);
 
   const dogInfo = await api.data.map((perro) => {
+    const newTemperament = [];
+    perro.temperament !== undefined ? perro.temperament.split(",").forEach((element) => {
+      newTemperament.push({name:element.trim()});
+    }) : newTemperament.push({name:'no existe'});
+
     const heightMM = [];
     perro.height.metric.split("-")?.forEach((element) => {
       heightMM.push(parseInt(element.trim()));
@@ -32,6 +37,8 @@ const getApiInfo = async () => {
       life_SpanAA.push(life_SpanAA[0]);
     }
 
+    
+
     return {
       id: perro.id,
       name: perro.name,
@@ -39,7 +46,7 @@ const getApiInfo = async () => {
       weight: weightMM,
       lifeSpan: life_SpanAA,
       image: perro.image.url,
-      temperament: perro.temperament,
+      temperament: newTemperament,
       origin: perro.origin,
     };
   });

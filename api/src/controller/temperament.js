@@ -15,6 +15,8 @@ const getTemperament = async () => {
             temps.push(c.trim());
         }
     });
+
+    
     
     temps.map(async (d) => {
         await Temperament.findOrCreate({
