@@ -9,6 +9,7 @@ import {
   ORDER_BY_WEIGHT,
   GET_DOG_BY_NAME,
   POST_DOG,
+  POST_DOG_SUCESS,
 } from "./constant";
 
 function SortArrayAZ(x, y) {
@@ -39,6 +40,7 @@ const initialState = {
   dogsByWeigth: [],
   dogsByCreated: [],
   dogsByTemperament: [],
+  post:false
 };
 
 function rootReducer(state = initialState, action) {
@@ -54,6 +56,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         temperaments: action.payload,
       };
+      case POST_DOG_SUCESS :
+
+      return{
+        ...state,
+        post:true,
+      }
 
     case FILTER_BY_TEMPERAMENTS:
       const alldogs = state.dogs;

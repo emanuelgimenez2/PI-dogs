@@ -46,28 +46,33 @@ router.post("/dog", async (req, res) => {
     req.body;
 
 
-  await Temperament.findOrCreate({
-    where: {
-      name: temperament,
-    },
-    defaults: {
-      name: temperament,
-    },
-  });
+    for (let i = 0; i < temperament.length; i++) {
+      
+      await Temperament.findOrCreate({
+        where: {
+          name: temperament[i],
+        },
+        defaults: {
+          name: temperament[i],
+        },
+      });
+    
+      let temperamentDb = await Temperament.findAll({
+        where: { name: temperament[i] },
+      });
+    
+      let dog = await Dog.create({
+        name,
+        height,
+        weight,
+        life_span,
+        image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
+      });
+    
+      dog.setTemperaments(temperamentDb);
+    }
 
-  let temperamentDb = await Temperament.findAll({
-    where: { name: temperament },
-  });
-
-  let dog = await Dog.create({
-    name,
-    height,
-    weight,
-    life_span,
-    image: image ? image :"https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
-  });
-
-  dog.setTemperaments(temperamentDb);
+  
  
   res.status(200).send("Perrito creado! :D");
 });

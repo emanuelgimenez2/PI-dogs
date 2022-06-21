@@ -30,10 +30,10 @@ export default function Card({ image, name, temperament, weight, height, id }) {
           <h3 className="weightHome">Peso: {`${weight[0]}kg  `}</h3>
           <h3 className="temp">Temperamento: </h3>
 
-          {temperament.map((item, index) => {
+          {/* {temperament.map((item, index) => {
             
             return <h3 key={index}>{item}</h3>;
-          })}
+          })} */}
         </div>
       </div>
     </div>

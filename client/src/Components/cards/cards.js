@@ -24,14 +24,25 @@ export default function Cards() {
     setCurrentPage(pageNumber);
   };
 
+  // if (!currentDog) {
+  //   return (
+  //     // <div>
+  //     //   <img src="https://loading.io/asset/580931" />
+  //     // </div>
+  //   );
+  // }
+
+   console.log('=============initialdata================>',initialData)
+//  console.log('=============data================>',currentDog)
+//  console.log('=============dcurrentpage================>',currentPage)
 
 
-  if (!currentDog) {
-    return (
-      <div>
-        <p>Loading...</p>
+  if(currentDog.length === 0){
+    return(
+      <div style={{background:'red',minHeight:'100vh'}}>
+        <p>loading</p>
       </div>
-    );
+    )
   }
 
   return (
@@ -44,22 +55,22 @@ export default function Cards() {
         />
       </div>
       <div className="container-cards">
-        {currentDog.map((dog, index) => {
-          let temperamentArray = dog.temperament;
-          let temperamentString = dog.temperament.split(",");
+        { currentDog.map((dog, index) => {
+          // let temperamentArray = dog?.temperament ? dog?.temperament : [];
+          // let temperamentString = dog?.temperament.length > 0 ? dog?.temperament.split(",") : 'eppe';
 
-          let dataTemperament = Array.isArray(dog.temperament)
-            ? temperamentArray
-            : temperamentString;
+          // let dataTemperament = Array.isArray(dog?.temperament)
+          //   ? temperamentArray
+          //   : temperamentString;
 
           return (
             <Card
               height={dog?.height}
               weight={dog?.weight}
               id={dog?.id}
-              image={dog?.image}
+              image={dog.image}
               name={dog?.name}
-              temperament={dataTemperament}
+              // temperament={dataTemperament}
               key={dog?.id}
             />
           );
@@ -67,11 +78,11 @@ export default function Cards() {
       </div>
 
       <div>
-        <Pagination
+        {/* <Pagination
           dogsPerPage={dogsPerPage}
           allDogs={initialData.length - 1}
           page={pagination}
-        />
+        /> */}
       </div>
     </div>
   );

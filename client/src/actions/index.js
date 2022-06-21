@@ -9,6 +9,7 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
   GET_DOG_BY_NAME,
+  POST_DOG_SUCESS,
 } from "../Reducer/constant";
 
 export function getDogs() {
@@ -38,13 +39,17 @@ export function getTemperaments() {
 export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-
-    axios
-
-      .post("http://localhost:3001/dog", payload)
+    axios.post("http://localhost:3001/dog", payload)
       .then(function (response) {
         const data = JSON.parse(response.status);
-        data === 200 ? alert("Raza creada correctamente") : alert("Error");
+        if (data === 200) {
+          dispatch({type: POST_DOG_SUCESS});
+          alert("Raza creada correctamente")
+        
+        }else{
+            alert("Error");
+          }
+     
       })
       .catch(function (error) {
         console.log(error);

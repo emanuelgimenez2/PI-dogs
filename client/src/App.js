@@ -3,7 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Components/home/home.js";
 import Detail from "./Components/detail/detail";
 import Landing from "./pages/Landing/Landing.js";
-import Create from "./Components/create/create";
+import Create from "./Components/create/create.js";
+
+
 
 function App() {
   return (

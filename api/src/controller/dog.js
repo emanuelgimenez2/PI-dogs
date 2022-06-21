@@ -32,6 +32,8 @@ const getApiInfo = async () => {
       life_SpanAA.push(life_SpanAA[0]);
     }
 
+    // console.log('===perro,temperament==>',perro.temperament)
+
     return {
       id: perro.id,
       name: perro.name,

@@ -12,55 +12,113 @@ export default function Create() {
   var history = useNavigate();
   const dispatch = useDispatch();
   const temperamentsDogs = useSelector((state) => state.temperaments);
-  const [input, setInput] = useState({
-    name: "",
-    minimHeight: "",
-    maximHeight: "",
+  const statusPost = useSelector((state) => state.post);
+  const [name, setName] = useState("");
+  const [minHeight, setMinHeight] = useState(0);
+  const [maxHeight, setMaxHeight] = useState(0);
+  const [minWeight, setMinWeight] = useState(0);
+  const [maxWeight, setMaxWeight] = useState(0);
+  const [maxLifeSpan, setMaxLifeSpan] = useState(0);
+  const [minLifeSpan, setMinLifeSpan] = useState(0);
+  const [temperament, setTemperament] = useState();
+  const [dataDog, setDataDog] = useState([]);
 
-    minimWeight: "",
-    maximWeight: "",
-    maxLifeSpan: "",
-    minLifeSpan: "",
-    image: "",
-    temperament: [],
-  });
-
-  const dataReadyForSend = {
-    name: input.name,
-    height: [input.minimHeight, input.maximHeight],
-    weight: [input.minimWeight, input.maximWeight],
-    life_span: `${input.minLifeSpan}-${input.maxLifeSpan}`,
-    image: input.image,
-    temperament: input.temperament,
+  var data = {
+    name: name,
+    height: [minHeight, maxHeight],
+    weight: [minWeight, maxWeight],
+    life_span: `${minLifeSpan},${maxLifeSpan}`,
+    temperament: dataDog,
   };
+
+  // const [input, setInput] = useState({
+  //   name: "",
+  //   minimHeight: "",
+  //   maximHeight: "",
+
+  //   minimWeight: "",
+  //   maximWeight: "",
+  //   maxLifeSpan: "",
+  //   minLifeSpan: "",
+  //   image: "",
+  //   temperament: [],
+  // });
+
+  // const dataReadyForSend = {
+  //   name: input.name,
+  //   height: [input.minimHeight, input.maximHeight],
+  //   weight: [input.minimWeight, input.maximWeight],
+  //   life_span: `${input.minLifeSpan}-${input.maxLifeSpan}`,
+  //   image: input.image,
+  //   temperament: input.temperament,
+  // };
+
   useEffect(() => {
     dispatch(getTemperaments());
   }, []);
 
-  
+  //   function handleChange(e) {
 
+  //     setInput({
+  //       ...input,
+  //       [e.target.name]: e.target.value,
+  //     });
+  //   }
 
- 
+  //   function handleSelec(e) {
 
-  function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  }
-  const handleDelete = (e) => {
-    setInput({
-        ...input,
-        temperament: input.temperament.filter(el => el !== e)
-    })
-}
+  //     setInput({
+  //       ...input,
+  //       [e.target.name]: e.target.value,
+  //     });
+  //   }
 
-  const handleClick = () => {
-    const validationData = Validate(input);
+  //   const handleDelete = (e) => {
+  //     setInput({
+  //         ...input,
+  //         temperament: input.temperament.filter(el => el !== e)
+  //     })
+  // }
 
-    Object.keys(validationData).length === 0 &&
-      dispatch(postDog(dataReadyForSend));
+  //   const handleClick = () => {
+  //     const validationData = Validate(input);
+
+  //     Object.keys(validationData).length === 0 &&
+  //       dispatch(postDog(dataReadyForSend));
+  //   };
+
+  const sendData = async () => {
+    let validatedData = Validate(data);
+    console.log("===validatedata=>", validatedData);
+
+    Object.keys(validatedData).length === 0 && (await dispatch(postDog(data)));
   };
+
+  const addTemperament = () => {
+    setDataDog([...dataDog, temperament]);
+  };
+
+  const removeTemperament = (element) => {
+    let tempDataDog = dataDog.filter((e) => e !== element);
+
+    setDataDog(tempDataDog);
+  };
+
+  // console.log('data===>',data)
+  useEffect(() => {
+    if (statusPost === true) {
+      setName("");
+      setMinHeight(0);
+      setMaxHeight(0);
+      setMinWeight(0);
+      setMaxWeight(0);
+      setMaxLifeSpan(0);
+      setMinLifeSpan(0);
+      setTemperament("");
+      setDataDog([]);
+    }
+    return null;
+  }, [statusPost]);
 
   return (
     <div className="container-form">
@@ -83,9 +141,9 @@ export default function Create() {
                 className="inputs"
                 type="text"
                 name="name"
-                value={input.raza}
-                onChange={(e) => handleChange(e)}
-                placeholder="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="raza"
               />
             </div>
 
@@ -96,9 +154,9 @@ export default function Create() {
                 type="number"
                 min="1"
                 max="99"
-                name="minimHeight"
-                value={input.minimHeight}
-                onChange={(e) => handleChange(e)}
+                name="minHeight"
+                value={minHeight}
+                onChange={(e) => setMinHeight(e.target.value)}
                 placeholder="Minimal height"
               />
             </div>
@@ -109,9 +167,9 @@ export default function Create() {
                 type="number"
                 min="1"
                 max="99"
-                name="maximHeight"
-                value={input.maximHeight}
-                onChange={(e) => handleChange(e)}
+                name="maxHeight"
+                value={maxHeight}
+                onChange={(e) => setMaxHeight(e.target.value)}
                 placeholder="Maximal height"
               />
             </div>
@@ -123,9 +181,9 @@ export default function Create() {
                 type="number"
                 min="1"
                 max="99"
-                name="minimWeight"
-                value={input.minimWeight}
-                onChange={(e) => handleChange(e)}
+                name="minWeight"
+                value={minWeight}
+                onChange={(e) => setMinWeight(e.target.value)}
                 placeholder="Minimal weight"
               />
             </div>
@@ -137,9 +195,9 @@ export default function Create() {
                 type="number"
                 min="1"
                 max="99"
-                name="maximWeight"
-                value={input.maximWeight}
-                onChange={(e) => handleChange(e)}
+                name="maxWeight"
+                value={maxWeight}
+                onChange={(e) => setMaxWeight(e.target.value)}
                 placeholder="Maximal weight"
               />
             </div>
@@ -152,8 +210,8 @@ export default function Create() {
                 min="1"
                 max="21"
                 name="minLifeSpan"
-                value={input.minLifeSpan}
-                onChange={(e) => handleChange(e)}
+                value={minLifeSpan}
+                onChange={(e) => setMinLifeSpan(e.target.value)}
                 placeholder="Breed's life span"
               />
             </div>
@@ -166,47 +224,44 @@ export default function Create() {
                 min="1"
                 max="21"
                 name="maxLifeSpan"
-                value={input.maxLifeSpan}
-                onChange={(e) => handleChange(e)}
+                value={maxLifeSpan}
+                onChange={(e) => setMaxLifeSpan(e.target.value)}
                 placeholder="Breed's life span"
               />
             </div>
             <div>
-              <select onChange={(e) => handleChange(e)} className="listTemps">
+              <select
+                onChange={(e) => setTemperament(e.target.value)}
+                className="listTemps"
+              >
                 <option hidden>Elija el temperamentos</option>
                 {temperamentsDogs.map((temperament) => (
                   <option key={temperament} value={temperament}>
                     {temperament}
-                    
                   </option>
                 ))}
               </select>
-              
             </div>
-            <div className="temperamentsItems">
-                    {input.temperament.map(el =>
-                        <p
-                            key={el}
-                            className="itemsTemperaments">
-                                {el}
-                                <button
-                                    className="buttonRemove"
-                                    onClick={() => handleDelete(el)}
-                                >
-                                <img
-                                    src={""} 
-                                    height="15px"
-                                    weight="15px"
-                                    alt="delete"
-                                    className="imgRemoveTemperament"
-                                    />
-                                </button>
-                            </p>
-                    )}  
-             </div>
+            {dataDog.map((temp, i) => (
+              <div key={i}>
+                <h3>{temp}</h3>
+                <button onClick={() => removeTemperament(temp)}>X</button>
+              </div>
+            ))}
           </div>
           <div>
-            <button className="buttonsubmit-from" onClick={handleClick}>
+            <button className="buttonsubmit-from">back</button>
+          </div>
+          <div>
+            <button
+              className="buttonsubmit-from"
+              onClick={() => addTemperament()}
+            >
+              agregar raza
+            </button>
+          </div>
+          <div>
+            <button className="buttonsubmit-from" onClick={() => sendData()}>
               Guardar
             </button>
           </div>
