@@ -7,16 +7,14 @@
   margin: auto;
 }
 
-@media (min-width: 500px) {
-  .list-footer {
-    grid-auto-flow: column;
-  }
-}
 
 .red-footer-tw {
   color: white;
   text-decoration: none;
   box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.4);
+}
+.red-footer-tw:hover {
+  box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, 0.8);
 }
 
 .red-footer-tw:hover {
@@ -55,5 +53,10 @@
   }
   75% {
     transform: rotate(-15deg);
+  }
+}
+@media (min-width: 500px) {
+  .list-footer {
+    grid-auto-flow: column;
   }
 }

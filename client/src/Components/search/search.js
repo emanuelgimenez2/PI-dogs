@@ -13,12 +13,12 @@ export default function Search({ data }) {
     setName(e.target.value);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (name.length === 0) {
       return alert("Ingresa un valor");
     } else {
-      dispatch(getDogName(name));
+      await dispatch(getDogName(name));
       setName("");
     }
   }

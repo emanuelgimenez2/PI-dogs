@@ -10,7 +10,7 @@ import {
   ORDER_BY_WEIGHT,
   GET_DOG_BY_NAME,
   POST_DOG_SUCESS,
-} from "../Reducer/constant";
+} from "../actions/actions";
 
 export function getDogs() {
   return async function (dispatch) {
@@ -39,17 +39,16 @@ export function getTemperaments() {
 export function postDog(payload) {
   return async function (dispatch) {
     // Le pasamos la ruta del back para que me traiga todos los dogs.
-    axios.post("http://localhost:3001/dog", payload)
+    axios
+      .post("http://localhost:3001/dog", payload)
       .then(function (response) {
         const data = JSON.parse(response.status);
         if (data === 200) {
-          dispatch({type: POST_DOG_SUCESS});
-          alert("Raza creada correctamente")
-        
-        }else{
-            alert("Error");
-          }
-     
+          dispatch({ type: POST_DOG_SUCESS });
+          alert("Raza creada correctamente");
+        } else {
+          alert("Error");
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -60,7 +59,6 @@ export function postDog(payload) {
 // Filtrar por temperament.
 // El payload va a ser el estado que me va a llegar.
 export function filterDogsByTemperament(payload) {
-  // console.log("Entre a la Action", payload);
   return {
     type: FILTER_BY_TEMPERAMENTS,
     payload,
@@ -75,9 +73,11 @@ export function filterCreated(payload) {
 }
 
 export function orderByName(payload) {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
+  return async function (dispatch) {
+    return {
+      type: ORDER_BY_NAME,
+      payload,
+    };
   };
 }
 
@@ -90,17 +90,17 @@ export function orderByWeight(payload) {
 
 export function getDogDetail(id) {
   return async function (dispatch) {
-    // try {
-      let data = await axios.get(`http://localhost:3001/dogs/${id}`);
-      let response = await data.data
+    try {
+    let data = await axios.get(`http://localhost:3001/dogs/${id}`);
+    let response = await data.data;
 
-      return dispatch({
-        type: GET_DOG_DETAIL,
-        payload: response,
-      });
-    // } catch (error) {
-    //   alert("error al buscar perro por ID");
-    // }
+    return dispatch({
+      type: GET_DOG_DETAIL,
+      payload: response,
+    });
+    } catch (error) {
+      alert("error al buscar perro por ID");
+    }
   };
 }
 

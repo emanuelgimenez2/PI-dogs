@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./filter.css";
 import { getDogs, getTemperaments } from "../../actions";
@@ -7,7 +8,7 @@ import {
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
-} from "../../Reducer/constant";
+} from "../../actions/actions";
 
 export default function Filter() {
   const temperamentsData = useSelector((state) => state.temperaments);
@@ -15,6 +16,7 @@ export default function Filter() {
   const [order, setOrder] = useState(false);
   const [weight, setWeight] = useState(false);
   const [temperament, setTemperament] = useState(false);
+  
   const [created, setCreated] = useState(false);
 
   //*******************Filtros******************* */
@@ -54,6 +56,7 @@ export default function Filter() {
   useEffect(() => {
     created && handleCreated();
   }, [created]);
+
 
   return (
     <div className="card-filter">

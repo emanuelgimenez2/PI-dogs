@@ -1,4 +1,3 @@
-import { getDogs } from "../actions";
 import {
   GET_DOGS,
   GET_TEMPERAMENTS,
@@ -7,10 +6,21 @@ import {
   FILTER_CREATED,
   ORDER_BY_NAME,
   ORDER_BY_WEIGHT,
-  GET_DOG_BY_NAME,
   POST_DOG,
   POST_DOG_SUCESS,
-} from "./constant";
+  GET_DOG_BY_NAME,
+} from "../actions/actions";
+
+const initialState = {
+  dogs: [],
+  detail: [],
+  temperaments: [],
+  dogsByName: [],
+  dogsByWeigth: [],
+  dogsByCreated: [],
+  dogsByTemperament: [],
+  post: false,
+};
 
 function SortArrayAZ(x, y) {
   if (x.name < y.name) {
@@ -32,19 +42,9 @@ function SortArrayZA(x, y) {
   return 0;
 }
 
-const initialState = {
-  dogs: [],
-  detail: [],
-  temperaments: [],
-  dogsByName: [],
-  dogsByWeigth: [],
-  dogsByCreated: [],
-  dogsByTemperament: [],
-  post:false
-};
-
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case GET_DOG_BY_NAME:
     case GET_DOGS:
       return {
         ...state,
@@ -56,17 +56,18 @@ function rootReducer(state = initialState, action) {
         ...state,
         temperaments: action.payload,
       };
-      case POST_DOG_SUCESS :
 
-      return{
+    case POST_DOG_SUCESS:
+      return {
         ...state,
-        post:true,
-      }
+        post: true,
+      };
 
     case FILTER_BY_TEMPERAMENTS:
       const alldogs = state.dogs;
+
       const temperamentsFiltered = alldogs.filter((el) =>
-        el.temperament?.includes(action.payload)
+        el.temperament[0].name.includes(action.payload)
       );
 
       return {
@@ -84,7 +85,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         dogs: createdFilter,
-        dogsByCreated: createdFilter,
       };
 
     case ORDER_BY_NAME:
@@ -125,12 +125,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         dogs: sortedArray,
         dogsByWeigth: sortedArray,
-      };
-
-    case GET_DOG_BY_NAME:
-      return {
-        ...state,
-        dogs: action.payload,
       };
 
     case POST_DOG:

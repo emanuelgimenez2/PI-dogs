@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
@@ -20,8 +21,6 @@ export default function Cards() {
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const currentDog = initialData.slice(indexOfFirstDog, indexOfLastDog);
-
-  console.log('==currentdog==>',currentDog)
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

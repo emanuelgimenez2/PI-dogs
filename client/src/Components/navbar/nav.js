@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Search from "../search/search";
-import "./nav.scss";
+import "./nav.css";
 export default function Nav() {
   var history = useNavigate();
 
   return (
     <div>
-      <nav className="navbar">
+      <nav className="navbar-nav">
         <div className="title-nav">
-          <h1>Aqui encontraras los perritos que quieras, busca el tuyo!</h1>
+          Dogs
         </div>
         <div className="form-nav">
           <button

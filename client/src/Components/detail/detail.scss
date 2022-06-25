@@ -1,45 +1,51 @@
-.container-detail{   
+.container-detail {
   background-image: url(../../assets//img/fondocontacto.jpg);
   min-height: 100vh;
-  // height: 100vh;
-  
+ display: flex;
+ justify-content: flex-end;
+ padding: 20px 20px 0 0;
 }
 
-
-.card-detail{
-  display: flex;
-  flex-direction:row-reverse;
-  
-
-}
-.content-detail {
-     display: flex;    
-    justify-content:left;
-    align-items: center;
-    flex-direction: column;
-    width: 35%;
-    height: 100%;
-    border-radius: 40px;
-    padding: 3% 3%;
-    
-    box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
-  
-}
-.pictureDetalle{
-  width: 150px;
-  height: 150px;
-}
-.divImgDetail{
+.card-detail {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50px;
-  height: 50px;
+  width: 35%;
+  height: 60%;
+  border-radius: 40px;
+  padding: 3% 3%;
+
+  box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 3px 7px 13px 2px rgba(0, 0, 0, 0.6);
 }
-.button-detail{
+
+.content-detail {
+}
+
+.temperamentDetalle {
+}
+.pictureDetalle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  border-radius: 30px;
+}
+.divImgDetail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // width: 20%;
+  // height: 20%;
+}
+.button-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1rem;
   font-weight: bold;
   width: 120px;
@@ -50,4 +56,39 @@
   color: white;
   cursor: pointer;
   position: relative;
+}
+.body-container {
+  padding: 10px 10px;
+  .wapper-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .subtaitel-body {
+      font-size: 1rem;
+      font-weight: bold;
+      color: blacks;
+      text-align: center;
+      margin: 0;
+    }
+    .container-body {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 0 0 10px;
+    }
+    .container-body-temperament{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // margin: 0 0 0 10px;
+
+      .temperament{
+        margin-left: 10px;
+       
+
+      }
+
+    }
+  }
 }

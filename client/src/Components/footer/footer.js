@@ -15,18 +15,8 @@ export default function Footer() {
             </a>
           </li>
           <li className="list">
-            <a className="red-footer-tw" href="https://codepen.io/">
-              Codepen
-            </a>
-          </li>
-          <li className="list">
             <a className="red-footer-tw" href="VFVBFBCFB@gmail.com">
               Email
-            </a>
-          </li>
-          <li className="list">
-            <a className="red-footer-tw" href="https://dribbble.com/">
-              Dribbble
             </a>
           </li>
           <li className="list">
@@ -34,9 +24,7 @@ export default function Footer() {
               Github
             </a>
           </li>
-          <li>
-            <p>👋</p>
-          </li>
+          
         </ul>
       </div>
     </Fragment>

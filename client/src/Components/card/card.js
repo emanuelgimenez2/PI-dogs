@@ -6,13 +6,15 @@ import "./card.scss";
 
 export default function Card({ image, name, temperament, weight, height, id }) {
   var history = useNavigate();
-  // console.log("==========================",temperament)
+
 
   return (
     <div className="container-card">
       <div
         className="detail-card"
-        onClick={() => {history(`/home/${id}`);
+        onClick={() => {
+          
+          history(`/home/${id}`);
         }}
       >
         <div className="title-card">

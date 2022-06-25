@@ -66,7 +66,6 @@ const getDBinfo = async () => {
   });
 
   const dogInfo = await dogInDB.map((d) => {
-    // console.log('=====d=====>',d)
     const weightMM = [];
 
     d.dataValues.weight.forEach((element) => {
@@ -82,8 +81,6 @@ const getDBinfo = async () => {
     if (!life_SpanAA[1]) {
       life_SpanAA.push(life_SpanAA[0]);
     }
-
-    
 
     return {
       id: d.dataValues.id,

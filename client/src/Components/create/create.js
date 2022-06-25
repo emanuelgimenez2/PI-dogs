@@ -35,16 +35,12 @@ export default function Create() {
     temperament: dataDog,
   };
 
-
-
   useEffect(() => {
     dispatch(getTemperaments());
   }, []);
 
-  
   const sendData = async () => {
     let validatedData = Validate(data);
-    console.log("===validatedata=>", validatedData);
 
     Object.keys(validatedData).length === 0 && (await dispatch(postDog(data)));
   };
@@ -59,7 +55,6 @@ export default function Create() {
     setDataDog(tempDataDog);
   };
 
-  
   useEffect(() => {
     if (statusPost === true) {
       setName("");
