@@ -16,11 +16,11 @@ export default function Cards() {
   const orderByTemperament = useSelector((state) => state.dogsByTemperament);
 
   /********************Paginado****************************/
-  const dogsPerPage = 8;
-  const [currentPage, setCurrentPage] = useState(1);
-  const indexOfLastDog = currentPage * dogsPerPage;
-  const indexOfFirstDog = indexOfLastDog - dogsPerPage;
-  const currentDog = initialData.slice(indexOfFirstDog, indexOfLastDog);
+  const dogsPerPage = 8;//cantidad de perros por pagina
+  const [currentPage, setCurrentPage] = useState(1);//pagina actual
+  const indexOfLastDog = currentPage * dogsPerPage;//indice del ultimo perro
+  const indexOfFirstDog = indexOfLastDog - dogsPerPage;//indice del primer perro
+  const currentDog = initialData.slice(indexOfFirstDog, indexOfLastDog);//perros de la pagina actual
 
   const pagination = (pageNumber) => {
     setCurrentPage(pageNumber);

@@ -196,7 +196,7 @@ export default function Create() {
             {dataDog.map((temp, i) => (
               <div key={i}>
                 <p>{temp}</p>
-                <button className="buttonRemove" onClick={() => removeTemperament(temp)}>X</button>
+                <button className="button-form" onClick={() => removeTemperament(temp)}>X</button>
               </div>
             ))}
            
@@ -206,12 +206,12 @@ export default function Create() {
          
           <div>
             <button
-              className="buttonsubmit-from"
+              className="button-form"
               onClick={() => addTemperament()}
             >
               Agregar Temperamento
             </button>
-            <button className="buttonsubmit-from" onClick={() => sendData()}>
+            <button className="button-form" onClick={() => sendData()}>
               Guardar
             </button>
           </div>

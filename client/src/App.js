@@ -4,7 +4,7 @@ import Home from "./Components/home/home.js";
 import Detail from "./Components/detail/detail";
 
 import Create from "./Components/create/create.js";
-import LandingPage1 from "./pages/landingPage1";
+import LandingPage1 from "./pages/landing/landingPage1";
 
 
 

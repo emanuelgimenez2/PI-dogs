@@ -7,7 +7,7 @@ import Filter from "../filter/filter";
 import "./home.css";
 import { useDispatch } from "react-redux";
 import { getDogs } from "../../actions";
-// import Footer from "../footer/footer";
+import Footer from "../footer/footer";
 
 export default function Home() {
  
@@ -16,6 +16,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs());
   }, []);
+  
   return (
     <div className="container-home">
       <div className="navigation-home">
@@ -27,9 +28,9 @@ export default function Home() {
       <div className="body-home">
         <Cards />
       </div>
-      {/* <div>
+      <div>
         <Footer />
-      </div> */}
+      </div>
     </div>
   );
 }

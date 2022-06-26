@@ -62,7 +62,7 @@ router.get("/temperament", async (req, res) => {
 router.post("/dog", async (req, res) => {
   let { name, height, weight, life_span, image, temperament } = req.body;
 
-  let dog = await Dog.create({
+  let dog = await Dog.create({//crea un nuevo perro
     name,
     height,
     weight,
@@ -73,17 +73,17 @@ router.post("/dog", async (req, res) => {
   });
 
   for (let i = 0; i < temperament.length; i++) {// un ciclo para crear los temperamentos  con su perro asociado
-    await Temperament.findOrCreate({
-      where: {
+    await Temperament.findOrCreate({//busca si existe el temperamento en la base de datos
+      where: {//si no existe lo crea
         name: temperament[i],
       },
-      defaults: {
+      defaults: {//si existe lo asocia al perro
         name: temperament[i],
       },
     });
 
-    let temperamentDb = await Temperament.findAll({
-      where: { name: temperament[i] },
+    let temperamentDb = await Temperament.findAll({//obtiene todos los temperamentos de la base de datos
+      where: { name: temperament[i] },//busca el temperamento que se creo
     });
 
     await dog.addTemperaments(temperamentDb); // guardo el temperamento en la base de datos
