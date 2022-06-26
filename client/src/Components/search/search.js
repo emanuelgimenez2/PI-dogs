@@ -38,7 +38,7 @@ export default function Search({ data }) {
           type="submit"
           onClick={(e) => handleSubmit(e)}
           className="button-search"
-        ></button>
+        >SEARCH</button>
       </div>
     </div>
   );

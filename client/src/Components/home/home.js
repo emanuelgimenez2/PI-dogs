@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import Nav from "../navbar/nav";
@@ -9,6 +10,7 @@ import { getDogs } from "../../actions";
 // import Footer from "../footer/footer";
 
 export default function Home() {
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {

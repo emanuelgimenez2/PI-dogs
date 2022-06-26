@@ -192,28 +192,31 @@ export default function Create() {
                 ))}
               </select>
             </div>
+            <div className="temperamentsItems">
             {dataDog.map((temp, i) => (
               <div key={i}>
-                <h3>{temp}</h3>
-                <button onClick={() => removeTemperament(temp)}>X</button>
+                <p>{temp}</p>
+                <button className="buttonRemove" onClick={() => removeTemperament(temp)}>X</button>
               </div>
             ))}
+           
+            
+           </div>
           </div>
-          <div>
-            <button className="buttonsubmit-from">back</button>
-          </div>
+         
           <div>
             <button
               className="buttonsubmit-from"
               onClick={() => addTemperament()}
             >
-              agregar raza
+              Agregar Temperamento
             </button>
-          </div>
-          <div>
             <button className="buttonsubmit-from" onClick={() => sendData()}>
               Guardar
             </button>
+          </div>
+          <div>
+           
           </div>
         </div>
       </div>

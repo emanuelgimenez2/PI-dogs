@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { Router } = require("express");
 const { Dog, Temperament } = require("../db");
-const { getAllDogs, getDetailsDogs } = require("../controller/dog");
+const { getAllDogs } = require("../controller/dog");
 const { getTemperament } = require("../controller/temperament");
 const router = Router();
 
@@ -21,9 +21,23 @@ router.get("/dogs", async function (req, res) {
   }
 });
 
+router.get("/dogs/name", async (req, res) => {
+  const { name } = req.query;
+  const allDogs = await getAllDogs();
+  const dogName = await allDogs.filter((d) =>
+    d.name.toLowerCase().includes(name.toLowerCase())
+  );
+  dogName.length
+    ? res.status(200).send(dogName)
+    : res.status(400).send("no se encontro el perro");
+}
+ )
 router.get("/dogs/:id", async (req, res) => {
+
+ 
+
   const { id } = req.params;
-  const allDogs = await getAllDogs(); //cambie getDetailsDogs por getAllDogs
+  const allDogs = await getAllDogs(); //obtiene todos los datos de la base de datos
 
   if (id) {
     let dogId = await allDogs.filter((obj) => obj.id == id);
@@ -31,6 +45,10 @@ router.get("/dogs/:id", async (req, res) => {
       ? res.status(200).send(dogId)
       : res.status(404).send("Perro no encontrado");
   }
+
+
+
+
 });
 
 router.get("/temperament", async (req, res) => {
@@ -54,7 +72,7 @@ router.post("/dog", async (req, res) => {
       : "https://flyclipart.com/thumb2/perro-animado-png-png-image-137089.png",
   });
 
-  for (let i = 0; i < temperament.length; i++) {
+  for (let i = 0; i < temperament.length; i++) {// un ciclo para crear los temperamentos  con su perro asociado
     await Temperament.findOrCreate({
       where: {
         name: temperament[i],
@@ -68,7 +86,7 @@ router.post("/dog", async (req, res) => {
       where: { name: temperament[i] },
     });
 
-    await dog.addTemperaments(temperamentDb);
+    await dog.addTemperaments(temperamentDb); // guardo el temperamento en la base de datos
   }
 
   res.status(200).send("Perrito creado! :D");

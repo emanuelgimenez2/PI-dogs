@@ -4,7 +4,7 @@
 }
 
 .button-pagination {
-    background-color: #000000a2;
+    background-color: rgba(206, 201, 201, 0.7);
     height: 5ex;
     width: 5ex;
     margin: 0.5ex; 
@@ -13,21 +13,24 @@
     color: rgb(246, 246, 248);
     transition: 0.3s;
     cursor: pointer;
+
 }
 
 .button-pagination:hover {
     transition-delay: 0s;
     color: rgb(255, 255, 255);
     transform: translateY(1ex);
+    
 }
 
-.button-pagination:active
-{
+.button-pagination:active{
     transition-delay: 0s;
     color: rgb(0, 255, 21);
     box-shadow: 0 0 60px rgb(59, 221, 10);        
     transform: translateY(1ex);  
 }
 .button-pagination:focus {
-    color: rgb(36, 33, 241);
-    transform: translateY(1ex);}
+    color: rgb(209, 51, 16);
+    transform: translateY(1ex);
+    background-color: rgba(27, 25, 25, 0.9);
+}
