@@ -6,6 +6,9 @@ const { API_KEY } = process.env;// importacion del key del archivo .env
  const getApiInfo = async () => {//pedido a la api de los datos
   const api = await axios.get(`https://api.thedogapi.com/v1/breeds?${API_KEY}`);
 
+
+  
+
   const dogInfo = await api.data.map((perro) => {
     const newTemperament = [];
     perro.temperament !== undefined// si el temperament no esta vacio

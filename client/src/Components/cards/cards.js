@@ -22,7 +22,7 @@ export default function Cards() {
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;//indice del primer perro
   const currentDog = initialData.slice(indexOfFirstDog, indexOfLastDog);//perros de la pagina actual
 
-  const pagination = (pageNumber) => {
+  const pagination = (pageNumber) => {//funcion para cambiar de pagina
     setCurrentPage(pageNumber);
   };
 

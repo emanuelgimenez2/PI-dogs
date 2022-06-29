@@ -13,8 +13,6 @@ export default function Detail() {
 
   const { id } = useParams();
 
-  // console.log('====id====>',id)
-
   useEffect(() => {
     dispatch(getDogDetail(id));
   }, [dispatch, id]);

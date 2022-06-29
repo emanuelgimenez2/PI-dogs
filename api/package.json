@@ -14,6 +14,7 @@
     "npm": ">=6.14.6"
   },
   "dependencies": {
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.7",
     "axios": "^0.27.2",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",

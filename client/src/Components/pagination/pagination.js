@@ -5,7 +5,7 @@ import "./pagination.css";
 export default function Pagination({ dogsPerPage, allDogs, page }) {
 
   const pageNumbers = [];
-  const totalPages = Math.ceil(allDogs / dogsPerPage);
+  const totalPages = Math.ceil(allDogs / dogsPerPage);//cantidad de paginas, ceil redondea hacia arriba
  
 
   for (let i = 0; i < totalPages; i++) {
