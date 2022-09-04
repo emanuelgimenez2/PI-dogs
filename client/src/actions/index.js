@@ -12,7 +12,7 @@ import {
   POST_DOG_SUCESS,
 } from "../actions/actions";
 
-const url ="http://localhost:3001";// variable con la direccion de la BD 
+const url ="http://localhost:3000";// variable con la direccion de la BD 
 
 export function getDogs() {
   return async function (dispatch) {
